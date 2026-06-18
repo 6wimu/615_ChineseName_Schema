@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ChineseNameDatabase xmlns="https://6wimu.github.io/615_ChineseName_Schema/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://6wimu.github.io/615_ChineseName_Schema/ cn_schema.xsd">
+  <NameRecord>
+    <dcterms:identifier>CN-2026-0018</dcterms:identifier>
+    <originalName>Wilson</originalName>
+    <inLanguage>English</inLanguage>
+    <familyName>韦</familyName>
+    <givenName>炜森</givenName>
+    <fullChineseName>韦炜森</fullChineseName>
+    <pinyin>Wéi Wěisēn</pinyin>
+    <ipa>[weɪ̯˧˥ weɪ̯˨˩˦ sən˥]</ipa>
+    <nationality>GB</nationality>
+    <mappingType>Phono-Semantic</mappingType>
+    <dcterms:description>韦 approximates the opening sound of Wilson. 炜 conveys brilliance and carries the fire radical, while 森 evokes a flourishing forest and carries the wood radical; the recommendation records a Five Elements consideration.</dcterms:description>
+    <hanziRadical>火</hanziRadical>
+    <hanziRadical>木</hanziRadical>
+    <pronunciationDifficulty>Medium</pronunciationDifficulty>
+    <culturalElement>FiveElements</culturalElement>
+  </NameRecord>
+</ChineseNameDatabase>

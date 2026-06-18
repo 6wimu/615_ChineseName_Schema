@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ChineseNameDatabase xmlns="https://6wimu.github.io/615_ChineseName_Schema/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://6wimu.github.io/615_ChineseName_Schema/ cn_schema.xsd">
+  <NameRecord>
+    <dcterms:identifier>CN-2026-0011</dcterms:identifier>
+    <originalName>Victor</originalName>
+    <inLanguage>English</inLanguage>
+    <givenName>胜伟</givenName>
+    <fullChineseName>胜伟</fullChineseName>
+    <pinyin>Shèng Wěi</pinyin>
+    <ipa>[ʂɤŋ˥˩ weɪ̯˨˩˦]</ipa>
+    <nationality>CA</nationality>
+    <mappingType>Semantic</mappingType>
+    <dcterms:description>Victor is represented semantically rather than forced into a surname–given-name structure. 胜 conveys victory, while 伟 adds the idea of greatness; familyName is intentionally omitted.</dcterms:description>
+    <hanziRadical>月</hanziRadical>
+    <hanziRadical>亻</hanziRadical>
+    <pronunciationDifficulty>Medium</pronunciationDifficulty>
+    <culturalElement>None</culturalElement>
+  </NameRecord>
+</ChineseNameDatabase>

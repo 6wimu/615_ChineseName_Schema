@@ -4,51 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Relevant Metadata Standards</title>
-<meta name="description" content="">
+<meta name="description" content="Standards and validation strategy used by the Chinese Name Recommendation Metadata Schema.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <header class="site-header">
-  <nav class="nav">
+  <nav class="nav" aria-label="Primary navigation">
     <a class="brand" href="index.html">Chinese Name Schema</a>
-    <button class="menu-button" aria-label="Open menu">☰</button>
+    <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
     <div class="nav-links"><a class="" href="index.html">Home</a><a class="" href="about.html">Narrative</a><a class="active" href="standards.html">Standards</a><a class="" href="vocabulary.html">Vocabulary</a><a class="" href="xsd.html">XSD</a><a class="" href="samples.html">Samples</a></div>
   </nav>
 </header>
-
-
 <main>
-<div class="page-hero">
-  <div class="eyebrow">Section 02</div>
-  <h1>Relevant Metadata Standards</h1>
-  <p class="lead">Standards and semantic models used directly or as design references.</p>
-</div>
+<div class="page-hero"><div class="eyebrow">Section 02</div><h1>Relevant Metadata Standards</h1><p class="lead">Standards and semantic models used directly or as design references.</p></div>
 <div class="content">
-  <aside class="side-nav">
-    <a href="#overview">Overview</a>
-    <a href="#implementation">Implementation note</a>
-  </aside>
+  <aside class="side-nav"><a href="#overview">Overview</a><a href="#implementation">Implementation note</a><a href="#validation">Validation strategy</a></aside>
   <article class="article">
-    <section id="overview">
-      <h2>Standards overview</h2>
-      <div class="meta-grid"><div class="meta-item"><strong>Dublin Core Terms</strong>Used directly for record identifiers and descriptive naming rationales. It offers broadly reusable semantic properties across domains.</div><div class="meta-item"><strong>Schema.org</strong>Informed earlier treatment of names and nationality. The final XSD uses local elements where direct XSD implementation is impractical.</div><div class="meta-item"><strong>FOAF</strong>Informed the distinction between family name and given name in person-name modeling.</div><div class="meta-item"><strong>SKOS</strong>Informed definition writing and the structure of controlled vocabularies.</div><div class="meta-item"><strong>ISO 3166-1</strong>Provides two-letter nationality codes such as KR, US, GB, and JP.</div><div class="meta-item"><strong>IPA</strong>Provides an optional pronunciation layer beyond Pinyin for precise phonetic description.</div></div>
-    </section>
-    <section id="implementation">
-      <h2>Implementation note</h2>
-      <p>
-        This schema is an application profile: it combines external semantic standards with
-        locally defined elements created for the Chinese-name recommendation domain.
-        Not every referenced standard is imported as an XSD. Some standards guide meaning,
-        naming, and interoperability, while the final technical implementation prioritizes
-        reliable schema validation.
-      </p>
-    </section>
+    <section id="overview"><h2>Standards overview</h2><div class="meta-grid"><div class="meta-item"><strong>Dublin Core Terms</strong>Used directly for record identifiers and descriptive naming rationales through <code>xs:import</code> and <code>ref=</code>.</div><div class="meta-item"><strong>Schema.org</strong>Informs the meaning of person-name and nationality concepts. The final XSD declares corresponding project elements locally.</div><div class="meta-item"><strong>FOAF</strong>Informs the distinction between family name and given name in person-name modeling.</div><div class="meta-item"><strong>SKOS</strong>Informs definition writing and the organization of controlled vocabularies.</div><div class="meta-item"><strong>ISO 3166-1</strong>Provides the alpha-2 format used for nationality values such as KR, US, GB, and JP.</div><div class="meta-item"><strong>IPA</strong>Provides an optional pronunciation layer beyond Pinyin for precise phonetic description.</div></div></section>
+    <section id="implementation"><h2>Implementation note</h2><p>This schema is an application profile: it combines an imported external namespace with locally defined elements created for the Chinese-name recommendation domain. Schema.org and FOAF are RDF-oriented vocabularies and are not imported as XSD dependencies here; instead, their semantics inform local elements such as <code>familyName</code> and <code>givenName</code>.</p></section>
+    <section id="validation"><h2>Validation strategy</h2><p><code>cn_schema.xsd</code> imports the separate <code>dcterms.xsd</code> file and references <code>dcterms:identifier</code> and <code>dcterms:description</code> as global elements. The local dependency is deliberately limited to those two terms so GitHub Pages and VS Code can validate the project without a network request. DCMI also publishes Qualified Dublin Core XML Schemas; this project-scoped file preserves the DCMI namespace but does not claim to reproduce the complete official schema.</p><div class="btn-row"><a class="btn" href="dcterms.xsd">Open imported profile</a><a class="btn light" href="https://www.dublincore.org/schemas/xmls/qdc/" rel="noopener">View DCMI XML Schemas</a></div></section>
   </article>
 </div>
 </main>
-
-
 <footer class="footer">
   <div class="footer-inner">
     <span>Chinese Name Recommendation Metadata Schema</span>
@@ -56,6 +33,5 @@
   </div>
 </footer>
 <script src="script.js"></script>
-
 </body>
 </html>

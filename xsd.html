@@ -4,113 +4,193 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>XSD File</title>
-<meta name="description" content="">
+<meta name="description" content="Complete XML Schema implementation for the Chinese Name Recommendation Metadata Schema.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <header class="site-header">
-  <nav class="nav">
+  <nav class="nav" aria-label="Primary navigation">
     <a class="brand" href="index.html">Chinese Name Schema</a>
-    <button class="menu-button" aria-label="Open menu">☰</button>
+    <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
     <div class="nav-links"><a class="" href="index.html">Home</a><a class="" href="about.html">Narrative</a><a class="" href="standards.html">Standards</a><a class="" href="vocabulary.html">Vocabulary</a><a class="active" href="xsd.html">XSD</a><a class="" href="samples.html">Samples</a></div>
   </nav>
 </header>
-
-
 <main>
-<div class="page-hero">
-  <div class="eyebrow">Section 04</div>
-  <h1>XSD File</h1>
-  <p class="lead">Direct access to the schema, its dependency file, and a readable implementation summary.</p>
-</div>
+<div class="page-hero"><div class="eyebrow">Section 04</div><h1>XSD File</h1><p class="lead">Direct access to the schema, its imported dependency, and the complete implementation.</p></div>
 <div class="content">
-  <aside class="side-nav">
-    <a href="#structure">Structure</a>
-    <a href="#files">Direct files</a>
-    <a href="#preview">Code preview</a>
-  </aside>
+  <aside class="side-nav"><a href="#structure">Structure</a><a href="#files">Direct files</a><a href="#namespace">Namespace</a><a href="#preview">Complete code</a></aside>
   <article class="article">
-    <section id="structure">
-      <h2>Schema structure</h2>
-      <p>
-        The root element is <code>ChineseNameDatabase</code>. It contains one or more
-        <code>NameRecord</code> elements. The schema defines required and optional fields,
-        controlled vocabularies, repeatability, documentation annotations, and design-intent comments.
-      </p>
-    </section>
-    <section id="files">
-      <h2>Direct files</h2>
-      <div class="btn-row">
-        <a class="btn" href="cn_schema.xsd">Open cn_schema.xsd</a>
-        <a class="btn light" href="dcterms.xsd">Open dcterms.xsd</a>
-      </div>
-      <p>The direct XSD URL is the website address followed by <code>/cn_schema.xsd</code>.</p>
-    </section>
-    <section id="preview">
-      <h2>Code preview</h2>
-      <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!-- 
-     [Design Intent - Schema Architecture &amp; OWL/RDF Handling]
-     Design Intent: Following the professor&#x27;s feedback from Draft 3, I needed to address how OWL/RDF-based vocabularies (like Schema.org and FOAF) are handled in an XSD environment. Since they do not provide official, accessible .xsd files, I adopted a &quot;Local Redefinition Strategy&quot;: I borrowed their conceptual semantics but redefined them as local elements (e.g., &lt;familyName&gt;) under my targetNamespace to ensure validation works perfectly. 
-     For Dublin Core Terms, I used &lt;xs:import&gt; and ref= with a local validation subset that preserves the official dcterms namespace (e.g., dcterms:identifier and dcterms:description). Additionally, I added domain-specific elements like `ipa` and `hanziRadical` to deepen the project&#x27;s semantic richness based on peer and professor reviews.
-     AI Usage: I prompted the AI to structure the XSD using xs:import for dcterms, and to translate my Draft Data Dictionary into locally validated elements with strict xs:enumeration restrictions. I specifically instructed the AI to add new domain-specific elements (&#x27;hanziRadical&#x27; and &#x27;ipa&#x27;) to reflect my design updates based on previous feedback. Finally, I manually reviewed the generated code to ensure all cardinality constraints (e.g., minOccurs=&quot;0&quot; for familyName) perfectly matched my schema design.
+    <section id="structure"><h2>Schema structure</h2><p>The root element is <code>ChineseNameDatabase</code>. It contains one or more <code>NameRecord</code> elements. The XSD defines required and optional fields, controlled vocabularies, repeatability, documentation annotations, and a cross-namespace Dublin Core import.</p><div class="meta-grid"><div class="meta-item"><strong>Optional surname</strong><code>familyName minOccurs="0"</code></div><div class="meta-item"><strong>External namespace</strong><code>xs:import</code> + <code>ref=</code></div><div class="meta-item"><strong>Controlled values</strong><code>xs:enumeration</code></div><div class="meta-item"><strong>Pattern validation</strong><code>[A-Z]{2}</code> nationality format</div></div></section>
+    <section id="files"><h2>Direct files</h2><div class="btn-row"><a class="btn" href="cn_schema.xsd">Open cn_schema.xsd</a><a class="btn light" href="dcterms.xsd">Open dcterms.xsd</a></div><p>The hosted schema URL is <code>https://6wimu.github.io/615_ChineseName_Schema/cn_schema.xsd</code>.</p></section>
+    <section id="namespace"><h2>Namespace update</h2><p>The previous placeholder <code>http://www.skku.edu/metadata/cn/</code> returned a 404 and was not controlled by this project. The final target namespace is the stable GitHub Pages project URL:</p><pre><code>https://6wimu.github.io/615_ChineseName_Schema/</code></pre><p>A namespace URI identifies the vocabulary; <code>xsi:schemaLocation</code> separately points validators to <code>cn_schema.xsd</code>.</p></section>
+    <section id="preview"><h2>Complete XSD code</h2><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!--
+  Chinese Name Recommendation Metadata Schema
+
+  Draft 4 implementation notes:
+  1. familyName is optional (minOccurs=&quot;0&quot;) so records such as Victor → 胜伟
+     do not require an artificial Chinese surname.
+  2. Dublin Core Terms are reused across namespaces with xs:import and ref=.
+     The accompanying dcterms.xsd is a small, project-scoped validation profile
+     that preserves the DCMI namespace while keeping validation reproducible.
+  3. Schema.org and FOAF are RDF-oriented vocabularies rather than official XSD
+     dependencies for this project. Their semantics inform locally declared
+     elements such as familyName and givenName.
+  4. Controlled values are enforced with xs:enumeration, while nationality uses
+     the ISO 3166-1 alpha-2 lexical format [A-Z]{2}.
+  5. ipa and repeatable hanziRadical elements add pronunciation and character-
+     structure detail; radicals such as 火 and 木 can support a Five Elements
+     naming rationale recorded through culturalElement.
 --&gt;
 &lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;
-           targetNamespace=&quot;http://www.skku.edu/metadata/cn/&quot;
-           xmlns=&quot;http://www.skku.edu/metadata/cn/&quot;
+           targetNamespace=&quot;https://6wimu.github.io/615_ChineseName_Schema/&quot;
+           xmlns=&quot;https://6wimu.github.io/615_ChineseName_Schema/&quot;
            xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot;
-           elementFormDefault=&quot;qualified&quot;&gt;
-    
-    &lt;!-- Design Intent: Import a local validation subset of Dublin Core Terms.
-         Keeping the dependency in the same public folder makes validation reproducible
-         while preserving the official dcterms namespace and global element references. --&gt;
-    &lt;xs:import namespace=&quot;http://purl.org/dc/terms/&quot; schemaLocation=&quot;dcterms.xsd&quot;/&gt;
-    
-    &lt;xs:element name=&quot;ChineseNameDatabase&quot;&gt;
-        &lt;xs:annotation&gt;
-            &lt;xs:documentation&gt;The root element containing multiple foreign Chinese name records.&lt;/xs:documentation&gt;
-        &lt;/xs:annotation&gt;
-        &lt;xs:complexType&gt;
+           elementFormDefault=&quot;qualified&quot;
+           attributeFormDefault=&quot;unqualified&quot;
+           version=&quot;1.0&quot;&gt;
+
+  &lt;xs:import namespace=&quot;http://purl.org/dc/terms/&quot; schemaLocation=&quot;dcterms.xsd&quot;/&gt;
+
+  &lt;xs:element name=&quot;ChineseNameDatabase&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;A database containing one or more Chinese-name recommendation records.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&quot;NameRecord&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;unbounded&quot;&gt;
+          &lt;xs:complexType&gt;
             &lt;xs:sequence&gt;
-                &lt;xs:element name=&quot;NameRecord&quot; maxOccurs=&quot;unbounded&quot;&gt;
-                    &lt;xs:complexType&gt;
-                        &lt;xs:sequence&gt;
-                            
-                            &lt;!-- 1. identifier --&gt;
-                            &lt;!-- Design Intent: Using ref= to pull globally declared element from Dublin Core. minOccurs=&quot;1&quot; makes it mandatory. --&gt;
-                            &lt;xs:element ref=&quot;dcterms:identifier&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
-                                &lt;xs:annotation&gt;
-                                    &lt;xs:documentation&gt;데이터베이스 안에서 각각의 작명 데이터를 서로 구별하기 위해 시스템이 자동으로 부여하는 고유한 번호입니다.&lt;/xs:documentation&gt;
-                                &lt;/xs:annotation&gt;
-                            &lt;/xs:element&gt;
-                            
-                            &lt;!-- 2. originalName --&gt;
-                            &lt;!-- Design Intent: Locally declared element borrowing concept from schema:name. --&gt;
-                            &lt;xs:element name=&quot;originalName&quot; type=&quot;xs:string&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
-                                &lt;xs:annotation&gt;
-                                    &lt;xs:documentation&gt;중국어 이름을 짓기 전, 외국인이 원래 사용하던 국가 기준의 본명 전체를 적습니다.&lt;/xs:documentation&gt;
-                                &lt;/xs:annotation&gt;
-                            &lt;/xs:element&gt;
-                            
-                            &lt;!-- 3. inLanguage --&gt;
-                            &lt;!-- Design Intent: xs:simpleType with enumeration restricts input to prevent data inconsistency. --&gt;
-                            &lt;xs:element name=&quot;inLanguage&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
-                                &lt;xs:annotation&gt;
-                                    &lt;xs:documentation&gt;원래 이름이 어느 언어권에서 유래했는지 명시합니다.&lt;/xs:documentation&gt;
-                                &lt;/xs:annotation&gt;
-                                &lt;xs:simpleType&gt;
-                                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;
-                                        &lt;xs:enumeration value=&quot;English&quot;/&gt;
-                                        &lt;xs:enumeration value=&quot;Korean&quot;/&gt;
-                                        &lt;xs:enumeration value=&quot;Japanese&quot;/&gt;
-…</pre>
-    </section>
+              &lt;xs:element ref=&quot;dcterms:identifier&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;A unique identifier for the recommendation record.&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:element&gt;
+
+              &lt;xs:element name=&quot;originalName&quot; type=&quot;xs:string&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The complete personal name before Chinese-name mapping.&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:element&gt;
+
+              &lt;xs:element name=&quot;inLanguage&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The source language of the original name.&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+                &lt;xs:simpleType&gt;
+                  &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+                    &lt;xs:enumeration value=&quot;English&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;Korean&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;Japanese&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;Other&quot;/&gt;
+                  &lt;/xs:restriction&gt;
+                &lt;/xs:simpleType&gt;
+              &lt;/xs:element&gt;
+
+              &lt;xs:element name=&quot;familyName&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The Chinese family-name component, omitted when the recommendation has no conventional surname.&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:element&gt;
+
+              &lt;xs:element name=&quot;givenName&quot; type=&quot;xs:string&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The Chinese personal-name component; when familyName is absent, this stores the complete recommended personal name.&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:element&gt;
+
+              &lt;xs:element name=&quot;fullChineseName&quot; type=&quot;xs:string&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The complete recommended Chinese name used for display and retrieval.&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:element&gt;
+
+              &lt;xs:element name=&quot;pinyin&quot; type=&quot;xs:string&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The Mandarin pronunciation in Hanyu Pinyin with tone marks.&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:element&gt;
+
+              &lt;xs:element name=&quot;ipa&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;An optional International Phonetic Alphabet transcription of the Mandarin pronunciation.&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:element&gt;
+
+              &lt;xs:element name=&quot;nationality&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The applicant nationality in the two-uppercase-letter ISO 3166-1 alpha-2 lexical format.&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+                &lt;xs:simpleType&gt;
+                  &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+                    &lt;xs:pattern value=&quot;[A-Z]{2}&quot;/&gt;
+                  &lt;/xs:restriction&gt;
+                &lt;/xs:simpleType&gt;
+              &lt;/xs:element&gt;
+
+              &lt;xs:element name=&quot;mappingType&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The principal strategy used to create or preserve the Chinese name.&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+                &lt;xs:simpleType&gt;
+                  &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+                    &lt;xs:enumeration value=&quot;Phonetic&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;Semantic&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;Localization&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;HanjaSphere&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;Phono-Semantic&quot;/&gt;
+                  &lt;/xs:restriction&gt;
+                &lt;/xs:simpleType&gt;
+              &lt;/xs:element&gt;
+
+              &lt;xs:element ref=&quot;dcterms:description&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The meaning of the selected characters and the rationale for the recommendation.&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:element&gt;
+
+              &lt;xs:element name=&quot;hanziRadical&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;A repeatable radical for a key given-name character. Values such as 火 and 木 can make a Five Elements rationale explicit.&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:element&gt;
+
+              &lt;xs:element name=&quot;pronunciationDifficulty&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;An estimated Mandarin-pronunciation difficulty for a non-Chinese speaker.&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+                &lt;xs:simpleType&gt;
+                  &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+                    &lt;xs:enumeration value=&quot;Low&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;Medium&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;High&quot;/&gt;
+                  &lt;/xs:restriction&gt;
+                &lt;/xs:simpleType&gt;
+              &lt;/xs:element&gt;
+
+              &lt;xs:element name=&quot;culturalElement&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;A repeatable controlled value for cultural or philosophical considerations used in the recommendation.&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+                &lt;xs:simpleType&gt;
+                  &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+                    &lt;xs:enumeration value=&quot;Zodiac&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;FiveElements&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;None&quot;/&gt;
+                  &lt;/xs:restriction&gt;
+                &lt;/xs:simpleType&gt;
+              &lt;/xs:element&gt;
+            &lt;/xs:sequence&gt;
+          &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/xs:schema&gt;
+</code></pre></section>
   </article>
 </div>
 </main>
-
-
 <footer class="footer">
   <div class="footer-inner">
     <span>Chinese Name Recommendation Metadata Schema</span>
@@ -118,6 +198,5 @@
   </div>
 </footer>
 <script src="script.js"></script>
-
 </body>
 </html>

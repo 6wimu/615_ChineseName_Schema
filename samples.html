@@ -4,213 +4,420 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sample XML Records</title>
+<meta name="description" content="Six validated XML records with schema preview cards, including optional surname and Five Elements examples.">
 <link rel="stylesheet" href="style.css">
-<style>
-  /* 샘플 인스턴스 전용 수직 레이아웃 미세 정렬 */
-  .sample-display-container {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    margin-top: 20px;
-    width: 100%;
-  }
-  /* 코드 박스가 아티클 상자 안에서 자연스럽게 조화되도록 배경톤 통일 */
-  .article pre {
-    margin: 0;
-    background: #171310;
-    border: 1px solid var(--line);
-    box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
-  }
-</style>
 </head>
 <body>
-
 <header class="site-header">
-  <nav class="nav">
+  <nav class="nav" aria-label="Primary navigation">
     <a class="brand" href="index.html">Chinese Name Schema</a>
-    <button class="menu-button" aria-label="Open menu">☰</button>
-    <div class="nav-links">
-      <a class="" href="index.html">Home</a>
-      <a class="" href="about.html">Narrative</a>
-      <a class="" href="standards.html">Standards</a>
-      <a class="" href="vocabulary.html">Vocabulary</a>
-      <a class="" href="xsd.html">XSD</a>
-      <a class="active" href="samples.html">Samples</a>
-    </div>
+    <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+    <div class="nav-links"><a class="" href="index.html">Home</a><a class="" href="about.html">Narrative</a><a class="" href="standards.html">Standards</a><a class="" href="vocabulary.html">Vocabulary</a><a class="" href="xsd.html">XSD</a><a class="active" href="samples.html">Samples</a></div>
   </nav>
 </header>
-
 <main>
-<div class="page-hero">
-  <div class="eyebrow">Section 05</div>
-  <h1>Sample XML Records</h1>
-  <p class="lead">Validated instances showing different Chinese name mapping strategies, beautifully mapped to our schema visualizer cards and structural XML patterns.</p>
-</div>
-
-<div class="content">
-  
-  <aside class="side-nav">
-    <a href="#sample-david">01. David (US)</a>
-    <a href="#sample-park">02. 박다운 (KR)</a>
-  </aside>
-
+<div class="page-hero"><div class="eyebrow">Section 05</div><h1>Sample XML Records</h1><p class="lead">Six complete, validated instances using homepage-style schema previews. Together they demonstrate every mapping type, optional family names, IPA, repeatable radicals, and a Five Elements record.</p></div>
+<div class="content samples-layout">
+  <aside class="side-nav"><a href="#david">01. David → 戴伟</a><a href="#park">02. 박다운 → 朴多韵</a><a href="#victor">03. Victor → 胜伟</a><a href="#sofia">04. Sofia → 索菲娅</a><a href="#wilson">05. Wilson → 韦炜森</a><a href="#haruka">06. はるか (Haruka) → 春香</a><a href="#combined">Combined file</a></aside>
   <article class="article">
-    
-    <section id="sample-david">
-      <h2>Instance 01: Western Name Localization</h2>
-      <p style="color: var(--muted); font-size: 0.9rem; margin-top: -10px;">Validated Record ID: CN-2026-0002</p>
-      
-      <div class="sample-display-container">
-        <div class="hero-visual" style="min-height: auto; margin-top: 0; box-shadow: none; background: transparent;">
-          <div class="visual-top">
-            <span><span class="status-dot"></span>Schema preview</span>
-            <span>Record CN-2026-0002</span>
-          </div>
-
-          <div class="name-card">
-            <div class="original">Original name · David (English)</div>
-            <div class="hanzi">戴伟</div>
-            <div class="pinyin">Dài Wěi</div>
-            <div class="meaning">
-              원래 서양 이름인 'David'의 첫 발음 소리를 살리면서, 중국의 유명한 전통 성씨인 '대(戴)'씨로 연결했습니다. 위대하고 훌륭한 사람이 되라는 뜻입니다.
-            </div>
-          </div>
-
-          <div class="schema-map">
-            <div class="node accent">
-              <strong>mappingType</strong>
-              <span>Localization</span>
-            </div>
-            <div class="node">
-              <strong>nationality</strong>
-              <span>US (United States)</span>
-            </div>
-            <div class="node">
-              <strong>hanziRadical (부수)</strong>
-              <span>亻 (인변)</span>
-            </div>
-            <div class="node accent">
-              <strong>pronunciationDifficulty</strong>
-              <span>Low</span>
-            </div>
-          </div>
-
-          <div class="chips">
-            <span class="chip">Dublin Core</span>
-            <span class="chip">IPA: [taɪ̯˥˧ weɪ̯˨˩˦]</span>
-            <span class="chip">Controlled Vocabulary</span>
-          </div>
-        </div>
-
-        <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;ChineseNameDatabase
-    xmlns="http://www.skku.edu/metadata/cn/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.skku.edu/metadata/cn/ cn_schema.xsd"&gt;
-    &lt;NameRecord&gt;
-        &lt;dcterms:identifier&gt;CN-2026-0002&lt;/dcterms:identifier&gt;
-        &lt;originalName&gt;David&lt;/originalName&gt;
-        &lt;inLanguage&gt;English&lt;/inLanguage&gt;
-        &lt;familyName&gt;戴&lt;/familyName&gt;
-        &lt;givenName&gt;伟&lt;/givenName&gt;
-        &lt;fullChineseName&gt;戴伟&lt;/fullChineseName&gt;
-        &lt;pinyin&gt;Dài Wěi&lt;/pinyin&gt;
-        &lt;ipa&gt;[taɪ̯˥˧ weɪ̯˨˩˦]&lt;/ipa&gt;
-        &lt;nationality&gt;US&lt;/nationality&gt;
-        &lt;mappingType&gt;Localization&lt;/mappingType&gt;
-        &lt;dcterms:description&gt;원래 서양 이름인 'David'의 첫 발음 소리를 살리면서, 중국의 유명한 전통 성씨인 '대(戴)'씨로 연결했습니다. 위대하고 훌륭한 사람이 되라는 뜻입니다.&lt;/dcterms:description&gt;
-        &lt;hanziRadical&gt;亻&lt;/hanziRadical&gt;
-        &lt;pronunciationDifficulty&gt;Low&lt;/pronunciationDifficulty&gt;
-        &lt;culturalElement&gt;None&lt;/culturalElement&gt;
-    &lt;/NameRecord&gt;
-&lt;/ChineseNameDatabase&gt;</code></pre>
+    <section id="coverage"><h2>Validation coverage</h2><div class="meta-grid"><div class="meta-item"><strong>6 complete records</strong>Each record is available as a standalone XML file and in one combined database file.</div><div class="meta-item"><strong>5 mapping types</strong>Phonetic, Semantic, Localization, HanjaSphere, and Phono-Semantic are all represented.</div><div class="meta-item"><strong>Optional familyName</strong>Victor, Sofia, and Haruka validate without an invented surname.</div><div class="meta-item"><strong>Five Elements</strong>Wilson → 韦炜森 explicitly records 火, 木, and <code>FiveElements</code>.</div></div></section>
+    <section id="david" class="sample-section">
+      <div class="sample-section-heading">
+        <div><div class="sample-kicker">Instance 01 · Western Name Localization</div><h2>David → 戴伟</h2><p>Preserves part of the original sound while creating a natural Chinese surname and a positive given name.</p></div>
+        <div class="validation-badge"><span class="status-dot"></span>Validated record · CN-2026-0002</div>
       </div>
-    </section>
 
-    <section id="sample-park" style="margin-top: 40px;">
-      <h2>Instance 02: East Asian Phono-Semantic Mapping</h2>
-      <p style="color: var(--muted); font-size: 0.9rem; margin-top: -10px;">Validated Record ID: CN-2026-0007</p>
-      
-      <div class="sample-display-container">
-        <div class="hero-visual" style="min-height: auto; margin-top: 0; box-shadow: none; background: transparent;">
-          <div class="visual-top">
-            <span><span class="status-dot"></span>Schema preview</span>
-            <span>Record CN-2026-0007</span>
-          </div>
-
-          <div class="name-card">
-            <div class="original">Original name · 박다운 (Korean)</div>
-            <div class="hanzi">朴多韵</div>
-            <div class="pinyin">Piáo Duōyùn</div>
-            <div class="meaning">
-              한국어 고유어 발음과 동일하게 읽히는 한자를 골랐습니다. 아름다운 예술적 운치와 풍요로움이 가득하길 바란다는 뜻입니다.
-            </div>
-          </div>
-
-          <div class="schema-map">
-            <div class="node accent">
-              <strong>mappingType</strong>
-              <span>Phono-Semantic</span>
-            </div>
-            <div class="node">
-              <strong>nationality</strong>
-              <span>KR (South Korea)</span>
-            </div>
-            <div class="node">
-              <strong>hanziRadical (부수)</strong>
-              <span>夕, 音 (다중 지정)</span>
-            </div>
-            <div class="node accent">
-              <strong>pronunciationDifficulty</strong>
-              <span>Medium</span>
-            </div>
-          </div>
-
-          <div class="chips">
-            <span class="chip">Dublin Core</span>
-            <span class="chip">IPA: [pʰjaʊ̯˧˥ twɔ˥ yn˥˩]</span>
-            <span class="chip">Controlled Vocabulary</span>
-          </div>
+      <div class="hero-visual schema-preview">
+        <div class="visual-top"><span><span class="status-dot"></span>Schema preview</span><span>Record CN-2026-0002</span></div>
+        <div class="name-card">
+          <div class="original">Original name · David (English)</div>
+          <div class="hanzi">戴伟</div>
+          <div class="pinyin">Dài Wěi</div>
+          <div class="meaning">The opening sound of “David” is localized through the established Chinese surname 戴. The given name 伟 conveys greatness and distinction.</div>
         </div>
-
-        <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;ChineseNameDatabase
-    xmlns="http://www.skku.edu/metadata/cn/"
-    xmlns:dcterms="http://purl.org/dc/terms/"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.skku.edu/metadata/cn/ cn_schema.xsd"&gt;
-    &lt;NameRecord&gt;
-        &lt;dcterms:identifier&gt;CN-2026-0007&lt;/dcterms:identifier&gt;
-        &lt;originalName&gt;박다운&lt;/originalName&gt;
-        &lt;inLanguage&gt;Korean&lt;/inLanguage&gt;
-        &lt;familyName&gt;朴&lt;/familyName&gt;
-        &lt;givenName&gt;多韵&lt;/givenName&gt;
-        &lt;fullChineseName&gt;朴多韵&lt;/fullChineseName&gt;
-        &lt;pinyin&gt;Piáo Duōyùn&lt;/pinyin&gt;
-        &lt;ipa&gt;[pʰjaʊ̯˧˥ twɔ˥ yn˥˩]&lt;/ipa&gt;
-        &lt;nationality&gt;KR&lt;/nationality&gt;
-        &lt;mappingType&gt;Phono-Semantic&lt;/mappingType&gt;
-        &lt;dcterms:description&gt;한국어 고유어 발음과 동일하게 읽히는 한자를 골랐습니다. 아름다운 예술적 운치와 풍요로움이 가득하길 바란다는 뜻입니다.&lt;/dcterms:description&gt;
-        &lt;hanziRadical&gt;夕&lt;/hanziRadical&gt;
-        &lt;hanziRadical&gt;音&lt;/hanziRadical&gt;
-        &lt;pronunciationDifficulty&gt;Medium&lt;/pronunciationDifficulty&gt;
-        &lt;culturalElement&gt;None&lt;/culturalElement&gt;
-    &lt;/NameRecord&gt;
-&lt;/ChineseNameDatabase&gt;</code></pre>
+        <div class="schema-map">
+          <div class="node accent"><strong>mappingType</strong><span>Localization</span></div>
+          <div class="node"><strong>nationality</strong><span>US · United States</span></div>
+          <div class="node"><strong>familyName</strong><span>戴</span></div>
+          <div class="node accent"><strong>hanziRadical</strong><span>亻</span></div>
+          <div class="node"><strong>IPA</strong><span>[taɪ̯˥˩ weɪ̯˨˩˦]</span></div>
+          <div class="node"><strong>culturalElement</strong><span>None</span></div>
+        </div>
+        <div class="chips"><span class="chip">Dublin Core</span><span class="chip">Low pronunciation</span><span class="chip">Traditional family name present</span></div>
       </div>
-    </section>
 
+      <div class="btn-row"><a class="btn" href="sample-david.xml">Open XML file</a><a class="btn light" href="cn_schema.xsd">Open XSD</a></div>
+      <details class="xml-details"><summary>Show complete XML code</summary><div class="detail-body"><pre><code>&lt;?xml version=&#x27;1.0&#x27; encoding=&#x27;UTF-8&#x27;?&gt;
+&lt;ChineseNameDatabase xmlns=&quot;https://6wimu.github.io/615_ChineseName_Schema/&quot; xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;https://6wimu.github.io/615_ChineseName_Schema/ cn_schema.xsd&quot;&gt;
+  &lt;NameRecord&gt;
+    &lt;dcterms:identifier&gt;CN-2026-0002&lt;/dcterms:identifier&gt;
+    &lt;originalName&gt;David&lt;/originalName&gt;
+    &lt;inLanguage&gt;English&lt;/inLanguage&gt;
+    &lt;familyName&gt;戴&lt;/familyName&gt;
+    &lt;givenName&gt;伟&lt;/givenName&gt;
+    &lt;fullChineseName&gt;戴伟&lt;/fullChineseName&gt;
+    &lt;pinyin&gt;Dài Wěi&lt;/pinyin&gt;
+    &lt;ipa&gt;[taɪ̯˥˩ weɪ̯˨˩˦]&lt;/ipa&gt;
+    &lt;nationality&gt;US&lt;/nationality&gt;
+    &lt;mappingType&gt;Localization&lt;/mappingType&gt;
+    &lt;dcterms:description&gt;The opening sound of “David” is localized through the established Chinese surname 戴. The given name 伟 conveys greatness and distinction.&lt;/dcterms:description&gt;
+    &lt;hanziRadical&gt;亻&lt;/hanziRadical&gt;
+    &lt;pronunciationDifficulty&gt;Low&lt;/pronunciationDifficulty&gt;
+    &lt;culturalElement&gt;None&lt;/culturalElement&gt;
+  &lt;/NameRecord&gt;
+&lt;/ChineseNameDatabase&gt;
+</code></pre></div></details>
+    </section>
+<section id="park" class="sample-section">
+      <div class="sample-section-heading">
+        <div><div class="sample-kicker">Instance 02 · East Asian Phono-Semantic Mapping</div><h2>박다운 → 朴多韵</h2><p>Combines sound correspondence with positive semantic associations across Korean and Chinese.</p></div>
+        <div class="validation-badge"><span class="status-dot"></span>Validated record · CN-2026-0007</div>
+      </div>
+
+      <div class="hero-visual schema-preview">
+        <div class="visual-top"><span><span class="status-dot"></span>Schema preview</span><span>Record CN-2026-0007</span></div>
+        <div class="name-card">
+          <div class="original">Original name · 박다운 (Korean)</div>
+          <div class="hanzi">朴多韵</div>
+          <div class="pinyin">Piáo Duōyùn</div>
+          <div class="meaning">The Korean name is mapped through similar sounds while selecting characters with positive meanings: 多 suggests abundance, and 韵 suggests grace, rhythm, and artistic charm.</div>
+        </div>
+        <div class="schema-map">
+          <div class="node accent"><strong>mappingType</strong><span>Phono-Semantic</span></div>
+          <div class="node"><strong>nationality</strong><span>KR · South Korea</span></div>
+          <div class="node"><strong>familyName</strong><span>朴</span></div>
+          <div class="node accent"><strong>hanziRadical</strong><span>夕, 音</span></div>
+          <div class="node"><strong>IPA</strong><span>[pʰjɑʊ̯˧˥ twɔ˥ yn˥˩]</span></div>
+          <div class="node"><strong>culturalElement</strong><span>None</span></div>
+        </div>
+        <div class="chips"><span class="chip">Dublin Core</span><span class="chip">Medium pronunciation</span><span class="chip">Traditional family name present</span></div>
+      </div>
+
+      <div class="btn-row"><a class="btn" href="sample-park-daun.xml">Open XML file</a><a class="btn light" href="cn_schema.xsd">Open XSD</a></div>
+      <details class="xml-details"><summary>Show complete XML code</summary><div class="detail-body"><pre><code>&lt;?xml version=&#x27;1.0&#x27; encoding=&#x27;UTF-8&#x27;?&gt;
+&lt;ChineseNameDatabase xmlns=&quot;https://6wimu.github.io/615_ChineseName_Schema/&quot; xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;https://6wimu.github.io/615_ChineseName_Schema/ cn_schema.xsd&quot;&gt;
+  &lt;NameRecord&gt;
+    &lt;dcterms:identifier&gt;CN-2026-0007&lt;/dcterms:identifier&gt;
+    &lt;originalName&gt;박다운&lt;/originalName&gt;
+    &lt;inLanguage&gt;Korean&lt;/inLanguage&gt;
+    &lt;familyName&gt;朴&lt;/familyName&gt;
+    &lt;givenName&gt;多韵&lt;/givenName&gt;
+    &lt;fullChineseName&gt;朴多韵&lt;/fullChineseName&gt;
+    &lt;pinyin&gt;Piáo Duōyùn&lt;/pinyin&gt;
+    &lt;ipa&gt;[pʰjɑʊ̯˧˥ twɔ˥ yn˥˩]&lt;/ipa&gt;
+    &lt;nationality&gt;KR&lt;/nationality&gt;
+    &lt;mappingType&gt;Phono-Semantic&lt;/mappingType&gt;
+    &lt;dcterms:description&gt;The Korean name is mapped through similar sounds while selecting characters with positive meanings: 多 suggests abundance, and 韵 suggests grace, rhythm, and artistic charm.&lt;/dcterms:description&gt;
+    &lt;hanziRadical&gt;夕&lt;/hanziRadical&gt;
+    &lt;hanziRadical&gt;音&lt;/hanziRadical&gt;
+    &lt;pronunciationDifficulty&gt;Medium&lt;/pronunciationDifficulty&gt;
+    &lt;culturalElement&gt;None&lt;/culturalElement&gt;
+  &lt;/NameRecord&gt;
+&lt;/ChineseNameDatabase&gt;
+</code></pre></div></details>
+    </section>
+<section id="victor" class="sample-section">
+      <div class="sample-section-heading">
+        <div><div class="sample-kicker">Instance 03 · Semantic Mapping without a Family Name</div><h2>Victor → 胜伟</h2><p>Demonstrates the peer-feedback revision: familyName is absent because the recommendation is a meaningful two-character personal name, not an invented surname.</p></div>
+        <div class="validation-badge"><span class="status-dot"></span>Validated record · CN-2026-0011</div>
+      </div>
+
+      <div class="hero-visual schema-preview">
+        <div class="visual-top"><span><span class="status-dot"></span>Schema preview</span><span>Record CN-2026-0011</span></div>
+        <div class="name-card">
+          <div class="original">Original name · Victor (English)</div>
+          <div class="hanzi">胜伟</div>
+          <div class="pinyin">Shèng Wěi</div>
+          <div class="meaning">Victor is represented semantically rather than forced into a surname–given-name structure. 胜 conveys victory, while 伟 adds the idea of greatness; familyName is intentionally omitted.</div>
+        </div>
+        <div class="schema-map">
+          <div class="node accent"><strong>mappingType</strong><span>Semantic</span></div>
+          <div class="node"><strong>nationality</strong><span>CA · Canada</span></div>
+          <div class="node"><strong>familyName</strong><span>Omitted</span></div>
+          <div class="node accent"><strong>hanziRadical</strong><span>月, 亻</span></div>
+          <div class="node"><strong>IPA</strong><span>[ʂɤŋ˥˩ weɪ̯˨˩˦]</span></div>
+          <div class="node"><strong>culturalElement</strong><span>None</span></div>
+        </div>
+        <div class="chips"><span class="chip">Dublin Core</span><span class="chip">Medium pronunciation</span><span class="chip">familyName omitted (minOccurs=0)</span></div>
+      </div>
+
+      <div class="btn-row"><a class="btn" href="sample-victor.xml">Open XML file</a><a class="btn light" href="cn_schema.xsd">Open XSD</a></div>
+      <details class="xml-details"><summary>Show complete XML code</summary><div class="detail-body"><pre><code>&lt;?xml version=&#x27;1.0&#x27; encoding=&#x27;UTF-8&#x27;?&gt;
+&lt;ChineseNameDatabase xmlns=&quot;https://6wimu.github.io/615_ChineseName_Schema/&quot; xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;https://6wimu.github.io/615_ChineseName_Schema/ cn_schema.xsd&quot;&gt;
+  &lt;NameRecord&gt;
+    &lt;dcterms:identifier&gt;CN-2026-0011&lt;/dcterms:identifier&gt;
+    &lt;originalName&gt;Victor&lt;/originalName&gt;
+    &lt;inLanguage&gt;English&lt;/inLanguage&gt;
+    &lt;givenName&gt;胜伟&lt;/givenName&gt;
+    &lt;fullChineseName&gt;胜伟&lt;/fullChineseName&gt;
+    &lt;pinyin&gt;Shèng Wěi&lt;/pinyin&gt;
+    &lt;ipa&gt;[ʂɤŋ˥˩ weɪ̯˨˩˦]&lt;/ipa&gt;
+    &lt;nationality&gt;CA&lt;/nationality&gt;
+    &lt;mappingType&gt;Semantic&lt;/mappingType&gt;
+    &lt;dcterms:description&gt;Victor is represented semantically rather than forced into a surname–given-name structure. 胜 conveys victory, while 伟 adds the idea of greatness; familyName is intentionally omitted.&lt;/dcterms:description&gt;
+    &lt;hanziRadical&gt;月&lt;/hanziRadical&gt;
+    &lt;hanziRadical&gt;亻&lt;/hanziRadical&gt;
+    &lt;pronunciationDifficulty&gt;Medium&lt;/pronunciationDifficulty&gt;
+    &lt;culturalElement&gt;None&lt;/culturalElement&gt;
+  &lt;/NameRecord&gt;
+&lt;/ChineseNameDatabase&gt;
+</code></pre></div></details>
+    </section>
+<section id="sofia" class="sample-section">
+      <div class="sample-section-heading">
+        <div><div class="sample-kicker">Instance 04 · Direct Phonetic Transcription</div><h2>Sofia → 索菲娅</h2><p>Shows a conventional multi-character transliteration and a second valid use of the optional familyName field.</p></div>
+        <div class="validation-badge"><span class="status-dot"></span>Validated record · CN-2026-0014</div>
+      </div>
+
+      <div class="hero-visual schema-preview">
+        <div class="visual-top"><span><span class="status-dot"></span>Schema preview</span><span>Record CN-2026-0014</span></div>
+        <div class="name-card">
+          <div class="original">Original name · Sofia (English)</div>
+          <div class="hanzi">索菲娅</div>
+          <div class="pinyin">Suǒ Fēiyà</div>
+          <div class="meaning">The syllables of Sofia are rendered phonetically as 索菲娅. Because this is a transliteration rather than a conventional Chinese surname and given name, familyName is intentionally omitted.</div>
+        </div>
+        <div class="schema-map">
+          <div class="node accent"><strong>mappingType</strong><span>Phonetic</span></div>
+          <div class="node"><strong>nationality</strong><span>ES · Spain</span></div>
+          <div class="node"><strong>familyName</strong><span>Omitted</span></div>
+          <div class="node accent"><strong>hanziRadical</strong><span>糸, 艹, 女</span></div>
+          <div class="node"><strong>IPA</strong><span>[swɔ˨˩˦ feɪ̯˥ ja˥˩]</span></div>
+          <div class="node"><strong>culturalElement</strong><span>None</span></div>
+        </div>
+        <div class="chips"><span class="chip">Dublin Core</span><span class="chip">Medium pronunciation</span><span class="chip">familyName omitted (minOccurs=0)</span></div>
+      </div>
+
+      <div class="btn-row"><a class="btn" href="sample-sofia.xml">Open XML file</a><a class="btn light" href="cn_schema.xsd">Open XSD</a></div>
+      <details class="xml-details"><summary>Show complete XML code</summary><div class="detail-body"><pre><code>&lt;?xml version=&#x27;1.0&#x27; encoding=&#x27;UTF-8&#x27;?&gt;
+&lt;ChineseNameDatabase xmlns=&quot;https://6wimu.github.io/615_ChineseName_Schema/&quot; xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;https://6wimu.github.io/615_ChineseName_Schema/ cn_schema.xsd&quot;&gt;
+  &lt;NameRecord&gt;
+    &lt;dcterms:identifier&gt;CN-2026-0014&lt;/dcterms:identifier&gt;
+    &lt;originalName&gt;Sofia&lt;/originalName&gt;
+    &lt;inLanguage&gt;English&lt;/inLanguage&gt;
+    &lt;givenName&gt;索菲娅&lt;/givenName&gt;
+    &lt;fullChineseName&gt;索菲娅&lt;/fullChineseName&gt;
+    &lt;pinyin&gt;Suǒ Fēiyà&lt;/pinyin&gt;
+    &lt;ipa&gt;[swɔ˨˩˦ feɪ̯˥ ja˥˩]&lt;/ipa&gt;
+    &lt;nationality&gt;ES&lt;/nationality&gt;
+    &lt;mappingType&gt;Phonetic&lt;/mappingType&gt;
+    &lt;dcterms:description&gt;The syllables of Sofia are rendered phonetically as 索菲娅. Because this is a transliteration rather than a conventional Chinese surname and given name, familyName is intentionally omitted.&lt;/dcterms:description&gt;
+    &lt;hanziRadical&gt;糸&lt;/hanziRadical&gt;
+    &lt;hanziRadical&gt;艹&lt;/hanziRadical&gt;
+    &lt;hanziRadical&gt;女&lt;/hanziRadical&gt;
+    &lt;pronunciationDifficulty&gt;Medium&lt;/pronunciationDifficulty&gt;
+    &lt;culturalElement&gt;None&lt;/culturalElement&gt;
+  &lt;/NameRecord&gt;
+&lt;/ChineseNameDatabase&gt;
+</code></pre></div></details>
+    </section>
+<section id="wilson" class="sample-section">
+      <div class="sample-section-heading">
+        <div><div class="sample-kicker">Instance 05 · Five Elements Phono-Semantic Mapping</div><h2>Wilson → 韦炜森</h2><p>Provides the complete Five Elements example by pairing the fire radical 火 with the wood radical 木 and explicitly recording culturalElement as FiveElements.</p></div>
+        <div class="validation-badge"><span class="status-dot"></span>Validated record · CN-2026-0018</div>
+      </div>
+
+      <div class="hero-visual schema-preview">
+        <div class="visual-top"><span><span class="status-dot"></span>Schema preview</span><span>Record CN-2026-0018</span></div>
+        <div class="name-card">
+          <div class="original">Original name · Wilson (English)</div>
+          <div class="hanzi">韦炜森</div>
+          <div class="pinyin">Wéi Wěisēn</div>
+          <div class="meaning">韦 approximates the opening sound of Wilson. 炜 conveys brilliance and carries the fire radical, while 森 evokes a flourishing forest and carries the wood radical; the recommendation records a Five Elements consideration.</div>
+        </div>
+        <div class="schema-map">
+          <div class="node accent"><strong>mappingType</strong><span>Phono-Semantic</span></div>
+          <div class="node"><strong>nationality</strong><span>GB · United Kingdom</span></div>
+          <div class="node"><strong>familyName</strong><span>韦</span></div>
+          <div class="node accent"><strong>hanziRadical</strong><span>火, 木</span></div>
+          <div class="node"><strong>IPA</strong><span>[weɪ̯˧˥ weɪ̯˨˩˦ sən˥]</span></div>
+          <div class="node"><strong>culturalElement</strong><span>FiveElements</span></div>
+        </div>
+        <div class="chips"><span class="chip">Dublin Core</span><span class="chip">Medium pronunciation</span><span class="chip chip-accent">Five Elements</span></div>
+      </div>
+
+      <div class="btn-row"><a class="btn" href="sample-wilson-five-elements.xml">Open XML file</a><a class="btn light" href="cn_schema.xsd">Open XSD</a></div>
+      <details class="xml-details"><summary>Show complete XML code</summary><div class="detail-body"><pre><code>&lt;?xml version=&#x27;1.0&#x27; encoding=&#x27;UTF-8&#x27;?&gt;
+&lt;ChineseNameDatabase xmlns=&quot;https://6wimu.github.io/615_ChineseName_Schema/&quot; xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;https://6wimu.github.io/615_ChineseName_Schema/ cn_schema.xsd&quot;&gt;
+  &lt;NameRecord&gt;
+    &lt;dcterms:identifier&gt;CN-2026-0018&lt;/dcterms:identifier&gt;
+    &lt;originalName&gt;Wilson&lt;/originalName&gt;
+    &lt;inLanguage&gt;English&lt;/inLanguage&gt;
+    &lt;familyName&gt;韦&lt;/familyName&gt;
+    &lt;givenName&gt;炜森&lt;/givenName&gt;
+    &lt;fullChineseName&gt;韦炜森&lt;/fullChineseName&gt;
+    &lt;pinyin&gt;Wéi Wěisēn&lt;/pinyin&gt;
+    &lt;ipa&gt;[weɪ̯˧˥ weɪ̯˨˩˦ sən˥]&lt;/ipa&gt;
+    &lt;nationality&gt;GB&lt;/nationality&gt;
+    &lt;mappingType&gt;Phono-Semantic&lt;/mappingType&gt;
+    &lt;dcterms:description&gt;韦 approximates the opening sound of Wilson. 炜 conveys brilliance and carries the fire radical, while 森 evokes a flourishing forest and carries the wood radical; the recommendation records a Five Elements consideration.&lt;/dcterms:description&gt;
+    &lt;hanziRadical&gt;火&lt;/hanziRadical&gt;
+    &lt;hanziRadical&gt;木&lt;/hanziRadical&gt;
+    &lt;pronunciationDifficulty&gt;Medium&lt;/pronunciationDifficulty&gt;
+    &lt;culturalElement&gt;FiveElements&lt;/culturalElement&gt;
+  &lt;/NameRecord&gt;
+&lt;/ChineseNameDatabase&gt;
+</code></pre></div></details>
+    </section>
+<section id="haruka" class="sample-section">
+      <div class="sample-section-heading">
+        <div><div class="sample-kicker">Instance 06 · Hanja-Sphere Character Preservation</div><h2>はるか (Haruka) → 春香</h2><p>Demonstrates cross-lingual reuse of Han characters while distinguishing the Japanese source reading from the Mandarin display pronunciation.</p></div>
+        <div class="validation-badge"><span class="status-dot"></span>Validated record · CN-2026-0021</div>
+      </div>
+
+      <div class="hero-visual schema-preview">
+        <div class="visual-top"><span><span class="status-dot"></span>Schema preview</span><span>Record CN-2026-0021</span></div>
+        <div class="name-card">
+          <div class="original">Original name · はるか (Haruka) (Japanese)</div>
+          <div class="hanzi">春香</div>
+          <div class="pinyin">Chūnxiāng</div>
+          <div class="meaning">The Japanese given name はるか can be written as 春香. This sample preserves the Han-character form across the East Asian character sphere and records its Mandarin reading as Chūnxiāng.</div>
+        </div>
+        <div class="schema-map">
+          <div class="node accent"><strong>mappingType</strong><span>HanjaSphere</span></div>
+          <div class="node"><strong>nationality</strong><span>JP · Japan</span></div>
+          <div class="node"><strong>familyName</strong><span>Omitted</span></div>
+          <div class="node accent"><strong>hanziRadical</strong><span>日, 香</span></div>
+          <div class="node"><strong>IPA</strong><span>[ʈʂʰwən˥ ɕjɑŋ˥]</span></div>
+          <div class="node"><strong>culturalElement</strong><span>None</span></div>
+        </div>
+        <div class="chips"><span class="chip">Dublin Core</span><span class="chip">High pronunciation</span><span class="chip">familyName omitted (given name only)</span></div>
+      </div>
+
+      <div class="btn-row"><a class="btn" href="sample-haruka.xml">Open XML file</a><a class="btn light" href="cn_schema.xsd">Open XSD</a></div>
+      <details class="xml-details"><summary>Show complete XML code</summary><div class="detail-body"><pre><code>&lt;?xml version=&#x27;1.0&#x27; encoding=&#x27;UTF-8&#x27;?&gt;
+&lt;ChineseNameDatabase xmlns=&quot;https://6wimu.github.io/615_ChineseName_Schema/&quot; xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;https://6wimu.github.io/615_ChineseName_Schema/ cn_schema.xsd&quot;&gt;
+  &lt;NameRecord&gt;
+    &lt;dcterms:identifier&gt;CN-2026-0021&lt;/dcterms:identifier&gt;
+    &lt;originalName&gt;はるか (Haruka)&lt;/originalName&gt;
+    &lt;inLanguage&gt;Japanese&lt;/inLanguage&gt;
+    &lt;givenName&gt;春香&lt;/givenName&gt;
+    &lt;fullChineseName&gt;春香&lt;/fullChineseName&gt;
+    &lt;pinyin&gt;Chūnxiāng&lt;/pinyin&gt;
+    &lt;ipa&gt;[ʈʂʰwən˥ ɕjɑŋ˥]&lt;/ipa&gt;
+    &lt;nationality&gt;JP&lt;/nationality&gt;
+    &lt;mappingType&gt;HanjaSphere&lt;/mappingType&gt;
+    &lt;dcterms:description&gt;The Japanese given name はるか can be written as 春香. This sample preserves the Han-character form across the East Asian character sphere and records its Mandarin reading as Chūnxiāng.&lt;/dcterms:description&gt;
+    &lt;hanziRadical&gt;日&lt;/hanziRadical&gt;
+    &lt;hanziRadical&gt;香&lt;/hanziRadical&gt;
+    &lt;pronunciationDifficulty&gt;High&lt;/pronunciationDifficulty&gt;
+    &lt;culturalElement&gt;None&lt;/culturalElement&gt;
+  &lt;/NameRecord&gt;
+&lt;/ChineseNameDatabase&gt;
+</code></pre></div></details>
+    </section>
+    <section id="combined"><h2>Combined sample file</h2><p>All six records are available in one database-level XML document and validate together against the same XSD.</p><div class="btn-row"><a class="btn" href="sample-records.xml">Open combined XML</a><a class="btn light" href="cn_schema.xsd">Open XSD</a></div><details class="xml-details"><summary>Show complete combined XML</summary><div class="detail-body"><pre><code>&lt;?xml version=&#x27;1.0&#x27; encoding=&#x27;UTF-8&#x27;?&gt;
+&lt;ChineseNameDatabase xmlns=&quot;https://6wimu.github.io/615_ChineseName_Schema/&quot; xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;https://6wimu.github.io/615_ChineseName_Schema/ cn_schema.xsd&quot;&gt;
+  &lt;NameRecord&gt;
+    &lt;dcterms:identifier&gt;CN-2026-0002&lt;/dcterms:identifier&gt;
+    &lt;originalName&gt;David&lt;/originalName&gt;
+    &lt;inLanguage&gt;English&lt;/inLanguage&gt;
+    &lt;familyName&gt;戴&lt;/familyName&gt;
+    &lt;givenName&gt;伟&lt;/givenName&gt;
+    &lt;fullChineseName&gt;戴伟&lt;/fullChineseName&gt;
+    &lt;pinyin&gt;Dài Wěi&lt;/pinyin&gt;
+    &lt;ipa&gt;[taɪ̯˥˩ weɪ̯˨˩˦]&lt;/ipa&gt;
+    &lt;nationality&gt;US&lt;/nationality&gt;
+    &lt;mappingType&gt;Localization&lt;/mappingType&gt;
+    &lt;dcterms:description&gt;The opening sound of “David” is localized through the established Chinese surname 戴. The given name 伟 conveys greatness and distinction.&lt;/dcterms:description&gt;
+    &lt;hanziRadical&gt;亻&lt;/hanziRadical&gt;
+    &lt;pronunciationDifficulty&gt;Low&lt;/pronunciationDifficulty&gt;
+    &lt;culturalElement&gt;None&lt;/culturalElement&gt;
+  &lt;/NameRecord&gt;
+  &lt;NameRecord&gt;
+    &lt;dcterms:identifier&gt;CN-2026-0007&lt;/dcterms:identifier&gt;
+    &lt;originalName&gt;박다운&lt;/originalName&gt;
+    &lt;inLanguage&gt;Korean&lt;/inLanguage&gt;
+    &lt;familyName&gt;朴&lt;/familyName&gt;
+    &lt;givenName&gt;多韵&lt;/givenName&gt;
+    &lt;fullChineseName&gt;朴多韵&lt;/fullChineseName&gt;
+    &lt;pinyin&gt;Piáo Duōyùn&lt;/pinyin&gt;
+    &lt;ipa&gt;[pʰjɑʊ̯˧˥ twɔ˥ yn˥˩]&lt;/ipa&gt;
+    &lt;nationality&gt;KR&lt;/nationality&gt;
+    &lt;mappingType&gt;Phono-Semantic&lt;/mappingType&gt;
+    &lt;dcterms:description&gt;The Korean name is mapped through similar sounds while selecting characters with positive meanings: 多 suggests abundance, and 韵 suggests grace, rhythm, and artistic charm.&lt;/dcterms:description&gt;
+    &lt;hanziRadical&gt;夕&lt;/hanziRadical&gt;
+    &lt;hanziRadical&gt;音&lt;/hanziRadical&gt;
+    &lt;pronunciationDifficulty&gt;Medium&lt;/pronunciationDifficulty&gt;
+    &lt;culturalElement&gt;None&lt;/culturalElement&gt;
+  &lt;/NameRecord&gt;
+  &lt;NameRecord&gt;
+    &lt;dcterms:identifier&gt;CN-2026-0011&lt;/dcterms:identifier&gt;
+    &lt;originalName&gt;Victor&lt;/originalName&gt;
+    &lt;inLanguage&gt;English&lt;/inLanguage&gt;
+    &lt;givenName&gt;胜伟&lt;/givenName&gt;
+    &lt;fullChineseName&gt;胜伟&lt;/fullChineseName&gt;
+    &lt;pinyin&gt;Shèng Wěi&lt;/pinyin&gt;
+    &lt;ipa&gt;[ʂɤŋ˥˩ weɪ̯˨˩˦]&lt;/ipa&gt;
+    &lt;nationality&gt;CA&lt;/nationality&gt;
+    &lt;mappingType&gt;Semantic&lt;/mappingType&gt;
+    &lt;dcterms:description&gt;Victor is represented semantically rather than forced into a surname–given-name structure. 胜 conveys victory, while 伟 adds the idea of greatness; familyName is intentionally omitted.&lt;/dcterms:description&gt;
+    &lt;hanziRadical&gt;月&lt;/hanziRadical&gt;
+    &lt;hanziRadical&gt;亻&lt;/hanziRadical&gt;
+    &lt;pronunciationDifficulty&gt;Medium&lt;/pronunciationDifficulty&gt;
+    &lt;culturalElement&gt;None&lt;/culturalElement&gt;
+  &lt;/NameRecord&gt;
+  &lt;NameRecord&gt;
+    &lt;dcterms:identifier&gt;CN-2026-0014&lt;/dcterms:identifier&gt;
+    &lt;originalName&gt;Sofia&lt;/originalName&gt;
+    &lt;inLanguage&gt;English&lt;/inLanguage&gt;
+    &lt;givenName&gt;索菲娅&lt;/givenName&gt;
+    &lt;fullChineseName&gt;索菲娅&lt;/fullChineseName&gt;
+    &lt;pinyin&gt;Suǒ Fēiyà&lt;/pinyin&gt;
+    &lt;ipa&gt;[swɔ˨˩˦ feɪ̯˥ ja˥˩]&lt;/ipa&gt;
+    &lt;nationality&gt;ES&lt;/nationality&gt;
+    &lt;mappingType&gt;Phonetic&lt;/mappingType&gt;
+    &lt;dcterms:description&gt;The syllables of Sofia are rendered phonetically as 索菲娅. Because this is a transliteration rather than a conventional Chinese surname and given name, familyName is intentionally omitted.&lt;/dcterms:description&gt;
+    &lt;hanziRadical&gt;糸&lt;/hanziRadical&gt;
+    &lt;hanziRadical&gt;艹&lt;/hanziRadical&gt;
+    &lt;hanziRadical&gt;女&lt;/hanziRadical&gt;
+    &lt;pronunciationDifficulty&gt;Medium&lt;/pronunciationDifficulty&gt;
+    &lt;culturalElement&gt;None&lt;/culturalElement&gt;
+  &lt;/NameRecord&gt;
+  &lt;NameRecord&gt;
+    &lt;dcterms:identifier&gt;CN-2026-0018&lt;/dcterms:identifier&gt;
+    &lt;originalName&gt;Wilson&lt;/originalName&gt;
+    &lt;inLanguage&gt;English&lt;/inLanguage&gt;
+    &lt;familyName&gt;韦&lt;/familyName&gt;
+    &lt;givenName&gt;炜森&lt;/givenName&gt;
+    &lt;fullChineseName&gt;韦炜森&lt;/fullChineseName&gt;
+    &lt;pinyin&gt;Wéi Wěisēn&lt;/pinyin&gt;
+    &lt;ipa&gt;[weɪ̯˧˥ weɪ̯˨˩˦ sən˥]&lt;/ipa&gt;
+    &lt;nationality&gt;GB&lt;/nationality&gt;
+    &lt;mappingType&gt;Phono-Semantic&lt;/mappingType&gt;
+    &lt;dcterms:description&gt;韦 approximates the opening sound of Wilson. 炜 conveys brilliance and carries the fire radical, while 森 evokes a flourishing forest and carries the wood radical; the recommendation records a Five Elements consideration.&lt;/dcterms:description&gt;
+    &lt;hanziRadical&gt;火&lt;/hanziRadical&gt;
+    &lt;hanziRadical&gt;木&lt;/hanziRadical&gt;
+    &lt;pronunciationDifficulty&gt;Medium&lt;/pronunciationDifficulty&gt;
+    &lt;culturalElement&gt;FiveElements&lt;/culturalElement&gt;
+  &lt;/NameRecord&gt;
+  &lt;NameRecord&gt;
+    &lt;dcterms:identifier&gt;CN-2026-0021&lt;/dcterms:identifier&gt;
+    &lt;originalName&gt;はるか (Haruka)&lt;/originalName&gt;
+    &lt;inLanguage&gt;Japanese&lt;/inLanguage&gt;
+    &lt;givenName&gt;春香&lt;/givenName&gt;
+    &lt;fullChineseName&gt;春香&lt;/fullChineseName&gt;
+    &lt;pinyin&gt;Chūnxiāng&lt;/pinyin&gt;
+    &lt;ipa&gt;[ʈʂʰwən˥ ɕjɑŋ˥]&lt;/ipa&gt;
+    &lt;nationality&gt;JP&lt;/nationality&gt;
+    &lt;mappingType&gt;HanjaSphere&lt;/mappingType&gt;
+    &lt;dcterms:description&gt;The Japanese given name はるか can be written as 春香. This sample preserves the Han-character form across the East Asian character sphere and records its Mandarin reading as Chūnxiāng.&lt;/dcterms:description&gt;
+    &lt;hanziRadical&gt;日&lt;/hanziRadical&gt;
+    &lt;hanziRadical&gt;香&lt;/hanziRadical&gt;
+    &lt;pronunciationDifficulty&gt;High&lt;/pronunciationDifficulty&gt;
+    &lt;culturalElement&gt;None&lt;/culturalElement&gt;
+  &lt;/NameRecord&gt;
+&lt;/ChineseNameDatabase&gt;
+</code></pre></div></details></section>
   </article>
 </div>
 </main>
-
 <footer class="footer">
   <div class="footer-inner">
     <span>Chinese Name Recommendation Metadata Schema</span>
     <span>Final Project · 2026</span>
   </div>
 </footer>
-
+<script src="script.js"></script>
 </body>
 </html>

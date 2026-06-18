@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ChineseNameDatabase xmlns="https://6wimu.github.io/615_ChineseName_Schema/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://6wimu.github.io/615_ChineseName_Schema/ cn_schema.xsd">
+  <NameRecord>
+    <dcterms:identifier>CN-2026-0014</dcterms:identifier>
+    <originalName>Sofia</originalName>
+    <inLanguage>English</inLanguage>
+    <givenName>索菲娅</givenName>
+    <fullChineseName>索菲娅</fullChineseName>
+    <pinyin>Suǒ Fēiyà</pinyin>
+    <ipa>[swɔ˨˩˦ feɪ̯˥ ja˥˩]</ipa>
+    <nationality>ES</nationality>
+    <mappingType>Phonetic</mappingType>
+    <dcterms:description>The syllables of Sofia are rendered phonetically as 索菲娅. Because this is a transliteration rather than a conventional Chinese surname and given name, familyName is intentionally omitted.</dcterms:description>
+    <hanziRadical>糸</hanziRadical>
+    <hanziRadical>艹</hanziRadical>
+    <hanziRadical>女</hanziRadical>
+    <pronunciationDifficulty>Medium</pronunciationDifficulty>
+    <culturalElement>None</culturalElement>
+  </NameRecord>
+</ChineseNameDatabase>

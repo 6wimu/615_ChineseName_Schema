@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ChineseNameDatabase xmlns="https://6wimu.github.io/615_ChineseName_Schema/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://6wimu.github.io/615_ChineseName_Schema/ cn_schema.xsd">
+  <NameRecord>
+    <dcterms:identifier>CN-2026-0021</dcterms:identifier>
+    <originalName>はるか (Haruka)</originalName>
+    <inLanguage>Japanese</inLanguage>
+    <givenName>春香</givenName>
+    <fullChineseName>春香</fullChineseName>
+    <pinyin>Chūnxiāng</pinyin>
+    <ipa>[ʈʂʰwən˥ ɕjɑŋ˥]</ipa>
+    <nationality>JP</nationality>
+    <mappingType>HanjaSphere</mappingType>
+    <dcterms:description>The Japanese given name はるか can be written as 春香. This sample preserves the Han-character form across the East Asian character sphere and records its Mandarin reading as Chūnxiāng.</dcterms:description>
+    <hanziRadical>日</hanziRadical>
+    <hanziRadical>香</hanziRadical>
+    <pronunciationDifficulty>High</pronunciationDifficulty>
+    <culturalElement>None</culturalElement>
+  </NameRecord>
+</ChineseNameDatabase>
