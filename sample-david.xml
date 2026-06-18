@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ChineseNameDatabase
+    xmlns="http://www.skku.edu/metadata/cn/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.skku.edu/metadata/cn/ cn_schema.xsd">
+    <NameRecord>
+            <dcterms:identifier>CN-2026-0002</dcterms:identifier>
+            <originalName>David</originalName>
+            <inLanguage>English</inLanguage>
+            <familyName>戴</familyName>
+            <givenName>伟</givenName>
+            <fullChineseName>戴伟</fullChineseName>
+            <pinyin>Dài Wěi</pinyin>
+            <ipa>[taɪ̯˥˧ weɪ̯˨˩˦]</ipa>
+            <nationality>US</nationality>
+            <mappingType>Localization</mappingType>
+            <dcterms:description>원래 서양 이름인 'David'의 첫 발음 소리를 살리면서, 중국의 유명한 전통 성씨인 '대(戴)'씨로 연결했습니다. 위대하고 훌륭한 사람이 되라는 뜻입니다.</dcterms:description>
+            <hanziRadical>亻</hanziRadical>
+            <pronunciationDifficulty>Low</pronunciationDifficulty>
+            <culturalElement>None</culturalElement>
+        </NameRecord>
+</ChineseNameDatabase>

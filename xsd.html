@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>XSD File</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html">Chinese Name Schema</a>
+    <button class="menu-button" aria-label="Open menu">☰</button>
+    <div class="nav-links"><a class="" href="index.html">Home</a><a class="" href="about.html">Narrative</a><a class="" href="standards.html">Standards</a><a class="" href="vocabulary.html">Vocabulary</a><a class="active" href="xsd.html">XSD</a><a class="" href="samples.html">Samples</a></div>
+  </nav>
+</header>
+
+
+<main>
+<div class="page-hero">
+  <div class="eyebrow">Section 04</div>
+  <h1>XSD File</h1>
+  <p class="lead">Direct access to the schema, its dependency file, and a readable implementation summary.</p>
+</div>
+<div class="content">
+  <aside class="side-nav">
+    <a href="#structure">Structure</a>
+    <a href="#files">Direct files</a>
+    <a href="#preview">Code preview</a>
+  </aside>
+  <article class="article">
+    <section id="structure">
+      <h2>Schema structure</h2>
+      <p>
+        The root element is <code>ChineseNameDatabase</code>. It contains one or more
+        <code>NameRecord</code> elements. The schema defines required and optional fields,
+        controlled vocabularies, repeatability, documentation annotations, and design-intent comments.
+      </p>
+    </section>
+    <section id="files">
+      <h2>Direct files</h2>
+      <div class="btn-row">
+        <a class="btn" href="cn_schema.xsd">Open cn_schema.xsd</a>
+        <a class="btn light" href="dcterms.xsd">Open dcterms.xsd</a>
+      </div>
+      <p>The direct XSD URL is the website address followed by <code>/cn_schema.xsd</code>.</p>
+    </section>
+    <section id="preview">
+      <h2>Code preview</h2>
+      <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!-- 
+     [Design Intent - Schema Architecture &amp; OWL/RDF Handling]
+     Design Intent: Following the professor&#x27;s feedback from Draft 3, I needed to address how OWL/RDF-based vocabularies (like Schema.org and FOAF) are handled in an XSD environment. Since they do not provide official, accessible .xsd files, I adopted a &quot;Local Redefinition Strategy&quot;: I borrowed their conceptual semantics but redefined them as local elements (e.g., &lt;familyName&gt;) under my targetNamespace to ensure validation works perfectly. 
+     For Dublin Core Terms, I used &lt;xs:import&gt; and ref= with a local validation subset that preserves the official dcterms namespace (e.g., dcterms:identifier and dcterms:description). Additionally, I added domain-specific elements like `ipa` and `hanziRadical` to deepen the project&#x27;s semantic richness based on peer and professor reviews.
+     AI Usage: I prompted the AI to structure the XSD using xs:import for dcterms, and to translate my Draft Data Dictionary into locally validated elements with strict xs:enumeration restrictions. I specifically instructed the AI to add new domain-specific elements (&#x27;hanziRadical&#x27; and &#x27;ipa&#x27;) to reflect my design updates based on previous feedback. Finally, I manually reviewed the generated code to ensure all cardinality constraints (e.g., minOccurs=&quot;0&quot; for familyName) perfectly matched my schema design.
+--&gt;
+&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;
+           targetNamespace=&quot;http://www.skku.edu/metadata/cn/&quot;
+           xmlns=&quot;http://www.skku.edu/metadata/cn/&quot;
+           xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot;
+           elementFormDefault=&quot;qualified&quot;&gt;
+    
+    &lt;!-- Design Intent: Import a local validation subset of Dublin Core Terms.
+         Keeping the dependency in the same public folder makes validation reproducible
+         while preserving the official dcterms namespace and global element references. --&gt;
+    &lt;xs:import namespace=&quot;http://purl.org/dc/terms/&quot; schemaLocation=&quot;dcterms.xsd&quot;/&gt;
+    
+    &lt;xs:element name=&quot;ChineseNameDatabase&quot;&gt;
+        &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;The root element containing multiple foreign Chinese name records.&lt;/xs:documentation&gt;
+        &lt;/xs:annotation&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element name=&quot;NameRecord&quot; maxOccurs=&quot;unbounded&quot;&gt;
+                    &lt;xs:complexType&gt;
+                        &lt;xs:sequence&gt;
+                            
+                            &lt;!-- 1. identifier --&gt;
+                            &lt;!-- Design Intent: Using ref= to pull globally declared element from Dublin Core. minOccurs=&quot;1&quot; makes it mandatory. --&gt;
+                            &lt;xs:element ref=&quot;dcterms:identifier&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
+                                &lt;xs:annotation&gt;
+                                    &lt;xs:documentation&gt;데이터베이스 안에서 각각의 작명 데이터를 서로 구별하기 위해 시스템이 자동으로 부여하는 고유한 번호입니다.&lt;/xs:documentation&gt;
+                                &lt;/xs:annotation&gt;
+                            &lt;/xs:element&gt;
+                            
+                            &lt;!-- 2. originalName --&gt;
+                            &lt;!-- Design Intent: Locally declared element borrowing concept from schema:name. --&gt;
+                            &lt;xs:element name=&quot;originalName&quot; type=&quot;xs:string&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
+                                &lt;xs:annotation&gt;
+                                    &lt;xs:documentation&gt;중국어 이름을 짓기 전, 외국인이 원래 사용하던 국가 기준의 본명 전체를 적습니다.&lt;/xs:documentation&gt;
+                                &lt;/xs:annotation&gt;
+                            &lt;/xs:element&gt;
+                            
+                            &lt;!-- 3. inLanguage --&gt;
+                            &lt;!-- Design Intent: xs:simpleType with enumeration restricts input to prevent data inconsistency. --&gt;
+                            &lt;xs:element name=&quot;inLanguage&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;1&quot;&gt;
+                                &lt;xs:annotation&gt;
+                                    &lt;xs:documentation&gt;원래 이름이 어느 언어권에서 유래했는지 명시합니다.&lt;/xs:documentation&gt;
+                                &lt;/xs:annotation&gt;
+                                &lt;xs:simpleType&gt;
+                                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+                                        &lt;xs:enumeration value=&quot;English&quot;/&gt;
+                                        &lt;xs:enumeration value=&quot;Korean&quot;/&gt;
+                                        &lt;xs:enumeration value=&quot;Japanese&quot;/&gt;
+…</pre>
+    </section>
+  </article>
+</div>
+</main>
+
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Chinese Name Recommendation Metadata Schema</span>
+    <span>Final Project · 2026</span>
+  </div>
+</footer>
+<script src="script.js"></script>
+
+</body>
+</html>

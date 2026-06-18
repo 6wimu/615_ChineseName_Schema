@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sample XML Records</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html">Chinese Name Schema</a>
+    <button class="menu-button" aria-label="Open menu">☰</button>
+    <div class="nav-links"><a class="" href="index.html">Home</a><a class="" href="about.html">Narrative</a><a class="" href="standards.html">Standards</a><a class="" href="vocabulary.html">Vocabulary</a><a class="" href="xsd.html">XSD</a><a class="active" href="samples.html">Samples</a></div>
+  </nav>
+</header>
+
+
+<main>
+<div class="page-hero">
+  <div class="eyebrow">Section 05</div>
+  <h1>Sample XML Records</h1>
+  <p class="lead">Two records using different name-mapping strategies and validating against the hosted XSD.</p>
+</div>
+<div class="content">
+  <aside class="side-nav">
+    <a href="#david">David → 戴伟</a>
+    <a href="#park">박다운 → 朴多韵</a>
+    <a href="#combined">Combined file</a>
+  </aside>
+  <article class="article">
+    <section id="david">
+      <h2>David → 戴伟</h2>
+      <p><span class="tag">Localization</span> The name preserves part of the original sound while creating a natural Chinese surname and given name.</p>
+      <div class="btn-row"><a class="btn" href="sample-david.xml">Open XML file</a></div>
+      <details class="detail-list"><summary>Show XML code</summary><div class="detail-body"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;ChineseNameDatabase
+    xmlns=&quot;http://www.skku.edu/metadata/cn/&quot;
+    xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.skku.edu/metadata/cn/ cn_schema.xsd&quot;&gt;
+    &lt;NameRecord&gt;
+            &lt;dcterms:identifier&gt;CN-2026-0002&lt;/dcterms:identifier&gt;
+            &lt;originalName&gt;David&lt;/originalName&gt;
+            &lt;inLanguage&gt;English&lt;/inLanguage&gt;
+            &lt;familyName&gt;戴&lt;/familyName&gt;
+            &lt;givenName&gt;伟&lt;/givenName&gt;
+            &lt;fullChineseName&gt;戴伟&lt;/fullChineseName&gt;
+            &lt;pinyin&gt;Dài Wěi&lt;/pinyin&gt;
+            &lt;ipa&gt;[taɪ̯˥˧ weɪ̯˨˩˦]&lt;/ipa&gt;
+            &lt;nationality&gt;US&lt;/nationality&gt;
+            &lt;mappingType&gt;Localization&lt;/mappingType&gt;
+            &lt;dcterms:description&gt;원래 서양 이름인 &#x27;David&#x27;의 첫 발음 소리를 살리면서, 중국의 유명한 전통 성씨인 &#x27;대(戴)&#x27;씨로 연결했습니다. 위대하고 훌륭한 사람이 되라는 뜻입니다.&lt;/dcterms:description&gt;
+            &lt;hanziRadical&gt;亻&lt;/hanziRadical&gt;
+            &lt;pronunciationDifficulty&gt;Low&lt;/pronunciationDifficulty&gt;
+            &lt;culturalElement&gt;None&lt;/culturalElement&gt;
+        &lt;/NameRecord&gt;
+&lt;/ChineseNameDatabase&gt;
+</pre></div></details>
+    </section>
+    <section id="park">
+      <h2>박다운 → 朴多韵</h2>
+      <p><span class="tag">Phono-Semantic</span> The name combines similar pronunciation with positive semantic associations.</p>
+      <div class="btn-row"><a class="btn" href="sample-park-daun.xml">Open XML file</a></div>
+      <details class="detail-list"><summary>Show XML code</summary><div class="detail-body"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;ChineseNameDatabase
+    xmlns=&quot;http://www.skku.edu/metadata/cn/&quot;
+    xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://www.skku.edu/metadata/cn/ cn_schema.xsd&quot;&gt;
+    &lt;NameRecord&gt;
+            &lt;dcterms:identifier&gt;CN-2026-0007&lt;/dcterms:identifier&gt;
+            &lt;originalName&gt;박다운&lt;/originalName&gt;
+            &lt;inLanguage&gt;Korean&lt;/inLanguage&gt;
+            &lt;familyName&gt;朴&lt;/familyName&gt;
+            &lt;givenName&gt;多韵&lt;/givenName&gt;
+            &lt;fullChineseName&gt;朴多韵&lt;/fullChineseName&gt;
+            &lt;pinyin&gt;Piáo Duōyùn&lt;/pinyin&gt;
+            &lt;ipa&gt;[pʰjaʊ̯˧˥ twɔ˥ yn˥˩]&lt;/ipa&gt;
+            &lt;nationality&gt;KR&lt;/nationality&gt;
+            &lt;mappingType&gt;Phono-Semantic&lt;/mappingType&gt;
+            &lt;dcterms:description&gt;한국어 고유어 발음과 동일하게 읽히는 한자를 골랐습니다. 아름다운 예술적 운치와 풍요로움이 가득하길 바란다는 뜻입니다.&lt;/dcterms:description&gt;
+            &lt;hanziRadical&gt;夕&lt;/hanziRadical&gt;
+            &lt;hanziRadical&gt;音&lt;/hanziRadical&gt;
+            &lt;pronunciationDifficulty&gt;Medium&lt;/pronunciationDifficulty&gt;
+            &lt;culturalElement&gt;None&lt;/culturalElement&gt;
+        &lt;/NameRecord&gt;
+&lt;/ChineseNameDatabase&gt;
+</pre></div></details>
+    </section>
+    <section id="combined">
+      <h2>Combined sample file</h2>
+      <p>Both records are also available in one database-level XML document.</p>
+      <div class="btn-row"><a class="btn light" href="sample-records.xml">Open combined XML</a></div>
+    </section>
+  </article>
+</div>
+</main>
+
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Chinese Name Recommendation Metadata Schema</span>
+    <span>Final Project · 2026</span>
+  </div>
+</footer>
+<script src="script.js"></script>
+
+</body>
+</html>

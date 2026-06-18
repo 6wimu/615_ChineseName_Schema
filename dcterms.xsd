@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://purl.org/dc/terms/"
+           xmlns:dcterms="http://purl.org/dc/terms/"
+           elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:documentation>
+      Local validation subset of Dublin Core Terms used by this project.
+      It declares only dcterms:identifier and dcterms:description so that
+      the main schema can validate reliably without depending on a remote server.
+    </xs:documentation>
+  </xs:annotation>
+  <xs:element name="identifier" type="xs:string">
+    <xs:annotation><xs:documentation>An unambiguous reference to the resource within a given context.</xs:documentation></xs:annotation>
+  </xs:element>
+  <xs:element name="description" type="xs:string">
+    <xs:annotation><xs:documentation>An account of the resource.</xs:documentation></xs:annotation>
+  </xs:element>
+</xs:schema>

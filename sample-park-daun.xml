@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ChineseNameDatabase
+    xmlns="http://www.skku.edu/metadata/cn/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.skku.edu/metadata/cn/ cn_schema.xsd">
+    <NameRecord>
+            <dcterms:identifier>CN-2026-0007</dcterms:identifier>
+            <originalName>박다운</originalName>
+            <inLanguage>Korean</inLanguage>
+            <familyName>朴</familyName>
+            <givenName>多韵</givenName>
+            <fullChineseName>朴多韵</fullChineseName>
+            <pinyin>Piáo Duōyùn</pinyin>
+            <ipa>[pʰjaʊ̯˧˥ twɔ˥ yn˥˩]</ipa>
+            <nationality>KR</nationality>
+            <mappingType>Phono-Semantic</mappingType>
+            <dcterms:description>한국어 고유어 발음과 동일하게 읽히는 한자를 골랐습니다. 아름다운 예술적 운치와 풍요로움이 가득하길 바란다는 뜻입니다.</dcterms:description>
+            <hanziRadical>夕</hanziRadical>
+            <hanziRadical>音</hanziRadical>
+            <pronunciationDifficulty>Medium</pronunciationDifficulty>
+            <culturalElement>None</culturalElement>
+        </NameRecord>
+</ChineseNameDatabase>

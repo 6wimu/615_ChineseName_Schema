@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vocabulary Specification</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html">Chinese Name Schema</a>
+    <button class="menu-button" aria-label="Open menu">☰</button>
+    <div class="nav-links"><a class="" href="index.html">Home</a><a class="" href="about.html">Narrative</a><a class="" href="standards.html">Standards</a><a class="active" href="vocabulary.html">Vocabulary</a><a class="" href="xsd.html">XSD</a><a class="" href="samples.html">Samples</a></div>
+  </nav>
+</header>
+
+
+<main>
+<div class="page-hero">
+  <div class="eyebrow">Section 03</div>
+  <h1>Vocabulary Specification</h1>
+  <p class="lead">A concise overview first, followed by expandable element-by-element documentation.</p>
+</div>
+<div class="content">
+  <aside class="side-nav">
+    <a href="#overview">Element overview</a>
+    <a href="#controlled">Controlled vocabularies</a>
+    <a href="#dictionary">Full data dictionary</a>
+  </aside>
+  <article class="article">
+    <section id="overview">
+      <h2>Element overview</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Element</th><th>Label</th><th>Source</th><th>Cardinality</th></tr></thead>
+          <tbody><tr><td><code>dcterms:identifier</code></td><td>Record ID</td><td>Dublin Core Terms</td><td>Required · single</td></tr><tr><td><code>originalName</code></td><td>Original Name</td><td>Local</td><td>Required · single</td></tr><tr><td><code>inLanguage</code></td><td>Original Name Language</td><td>Local controlled vocabulary</td><td>Required · single</td></tr><tr><td><code>familyName</code></td><td>Chinese Family Name</td><td>Local; informed by FOAF</td><td>Optional · single</td></tr><tr><td><code>givenName</code></td><td>Chinese Given Name</td><td>Local; informed by FOAF</td><td>Required · single</td></tr><tr><td><code>fullChineseName</code></td><td>Full Chinese Name</td><td>Local</td><td>Required · single</td></tr><tr><td><code>pinyin</code></td><td>Pinyin</td><td>Local</td><td>Required · single</td></tr><tr><td><code>ipa</code></td><td>IPA Pronunciation</td><td>Local</td><td>Optional · single</td></tr><tr><td><code>nationality</code></td><td>Nationality</td><td>Local; ISO 3166-1 values</td><td>Required · single</td></tr><tr><td><code>mappingType</code></td><td>Name Mapping Type</td><td>Local controlled vocabulary</td><td>Required · single</td></tr><tr><td><code>dcterms:description</code></td><td>Name Meaning and Rationale</td><td>Dublin Core Terms</td><td>Required · single</td></tr><tr><td><code>hanziRadical</code></td><td>Hanzi Radical</td><td>Local</td><td>Optional · repeatable</td></tr><tr><td><code>pronunciationDifficulty</code></td><td>Pronunciation Difficulty</td><td>Local controlled vocabulary</td><td>Optional · single</td></tr><tr><td><code>culturalElement</code></td><td>Cultural Element</td><td>Local controlled vocabulary</td><td>Optional · repeatable</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section id="controlled">
+      <h2>Controlled vocabularies</h2>
+      <h3>inLanguage</h3>
+      <p><span class="tag">English</span><span class="tag">Korean</span><span class="tag">Japanese</span><span class="tag">Other</span></p>
+      <h3>mappingType</h3>
+      <p><span class="tag">Phonetic</span><span class="tag">Semantic</span><span class="tag">Localization</span><span class="tag">HanjaSphere</span><span class="tag">Phono-Semantic</span></p>
+      <h3>pronunciationDifficulty</h3>
+      <p><span class="tag">Low</span><span class="tag">Medium</span><span class="tag">High</span></p>
+      <h3>culturalElement</h3>
+      <p><span class="tag">Zodiac</span><span class="tag">FiveElements</span><span class="tag">None</span></p>
+    </section>
+    <section id="dictionary">
+      <h2>Full data dictionary</h2>
+      <p>Click an element to open its complete definition.</p>
+      <div class="detail-list"><details>
+      <summary>dcterms:identifier — Record ID</summary>
+      <div class="detail-body">
+        <p><strong>Source:</strong> Dublin Core Terms</p>
+        <p><strong>Definition:</strong> Unique identifier assigned to each record.</p>
+        <p><strong>Data value:</strong> string</p>
+        <p><strong>Cardinality:</strong> Required · single</p>
+        <p><strong>Example:</strong> <code>CN-2026-0002</code></p>
+      </div>
+    </details><details>
+      <summary>originalName — Original Name</summary>
+      <div class="detail-body">
+        <p><strong>Source:</strong> Local</p>
+        <p><strong>Definition:</strong> The person’s full name before Chinese-name creation.</p>
+        <p><strong>Data value:</strong> string</p>
+        <p><strong>Cardinality:</strong> Required · single</p>
+        <p><strong>Example:</strong> <code>David</code></p>
+      </div>
+    </details><details>
+      <summary>inLanguage — Original Name Language</summary>
+      <div class="detail-body">
+        <p><strong>Source:</strong> Local controlled vocabulary</p>
+        <p><strong>Definition:</strong> Language context of the original name.</p>
+        <p><strong>Data value:</strong> English / Korean / Japanese / Other</p>
+        <p><strong>Cardinality:</strong> Required · single</p>
+        <p><strong>Example:</strong> <code>English</code></p>
+      </div>
+    </details><details>
+      <summary>familyName — Chinese Family Name</summary>
+      <div class="detail-body">
+        <p><strong>Source:</strong> Local; informed by FOAF</p>
+        <p><strong>Definition:</strong> Chinese surname selected for the created name.</p>
+        <p><strong>Data value:</strong> string</p>
+        <p><strong>Cardinality:</strong> Optional · single</p>
+        <p><strong>Example:</strong> <code>戴</code></p>
+      </div>
+    </details><details>
+      <summary>givenName — Chinese Given Name</summary>
+      <div class="detail-body">
+        <p><strong>Source:</strong> Local; informed by FOAF</p>
+        <p><strong>Definition:</strong> Chinese given-name characters excluding the surname.</p>
+        <p><strong>Data value:</strong> string</p>
+        <p><strong>Cardinality:</strong> Required · single</p>
+        <p><strong>Example:</strong> <code>伟</code></p>
+      </div>
+    </details><details>
+      <summary>fullChineseName — Full Chinese Name</summary>
+      <div class="detail-body">
+        <p><strong>Source:</strong> Local</p>
+        <p><strong>Definition:</strong> Complete Chinese name used for display and retrieval.</p>
+        <p><strong>Data value:</strong> string</p>
+        <p><strong>Cardinality:</strong> Required · single</p>
+        <p><strong>Example:</strong> <code>戴伟</code></p>
+      </div>
+    </details><details>
+      <summary>pinyin — Pinyin</summary>
+      <div class="detail-body">
+        <p><strong>Source:</strong> Local</p>
+        <p><strong>Definition:</strong> Standard Hanyu Pinyin with tone marks.</p>
+        <p><strong>Data value:</strong> string</p>
+        <p><strong>Cardinality:</strong> Required · single</p>
+        <p><strong>Example:</strong> <code>Dài Wěi</code></p>
+      </div>
+    </details><details>
+      <summary>ipa — IPA Pronunciation</summary>
+      <div class="detail-body">
+        <p><strong>Source:</strong> Local</p>
+        <p><strong>Definition:</strong> Pronunciation represented with IPA.</p>
+        <p><strong>Data value:</strong> string</p>
+        <p><strong>Cardinality:</strong> Optional · single</p>
+        <p><strong>Example:</strong> <code>[taɪ̯˥˧ weɪ̯˨˩˦]</code></p>
+      </div>
+    </details><details>
+      <summary>nationality — Nationality</summary>
+      <div class="detail-body">
+        <p><strong>Source:</strong> Local; ISO 3166-1 values</p>
+        <p><strong>Definition:</strong> Applicant nationality expressed as a two-letter country code.</p>
+        <p><strong>Data value:</strong> [A-Z]{2}</p>
+        <p><strong>Cardinality:</strong> Required · single</p>
+        <p><strong>Example:</strong> <code>US</code></p>
+      </div>
+    </details><details>
+      <summary>mappingType — Name Mapping Type</summary>
+      <div class="detail-body">
+        <p><strong>Source:</strong> Local controlled vocabulary</p>
+        <p><strong>Definition:</strong> Method used to transform the original name into a Chinese name.</p>
+        <p><strong>Data value:</strong> Phonetic / Semantic / Localization / HanjaSphere / Phono-Semantic</p>
+        <p><strong>Cardinality:</strong> Required · single</p>
+        <p><strong>Example:</strong> <code>Localization</code></p>
+      </div>
+    </details><details>
+      <summary>dcterms:description — Name Meaning and Rationale</summary>
+      <div class="detail-body">
+        <p><strong>Source:</strong> Dublin Core Terms</p>
+        <p><strong>Definition:</strong> Meaning of the selected characters and the design intention.</p>
+        <p><strong>Data value:</strong> string</p>
+        <p><strong>Cardinality:</strong> Required · single</p>
+        <p><strong>Example:</strong> <code>Design explanation</code></p>
+      </div>
+    </details><details>
+      <summary>hanziRadical — Hanzi Radical</summary>
+      <div class="detail-body">
+        <p><strong>Source:</strong> Local</p>
+        <p><strong>Definition:</strong> Radical information for important characters.</p>
+        <p><strong>Data value:</strong> string</p>
+        <p><strong>Cardinality:</strong> Optional · repeatable</p>
+        <p><strong>Example:</strong> <code>亻</code></p>
+      </div>
+    </details><details>
+      <summary>pronunciationDifficulty — Pronunciation Difficulty</summary>
+      <div class="detail-body">
+        <p><strong>Source:</strong> Local controlled vocabulary</p>
+        <p><strong>Definition:</strong> Estimated difficulty for non-Chinese speakers.</p>
+        <p><strong>Data value:</strong> Low / Medium / High</p>
+        <p><strong>Cardinality:</strong> Optional · single</p>
+        <p><strong>Example:</strong> <code>Low</code></p>
+      </div>
+    </details><details>
+      <summary>culturalElement — Cultural Element</summary>
+      <div class="detail-body">
+        <p><strong>Source:</strong> Local controlled vocabulary</p>
+        <p><strong>Definition:</strong> Cultural or philosophical consideration used in the name.</p>
+        <p><strong>Data value:</strong> Zodiac / FiveElements / None</p>
+        <p><strong>Cardinality:</strong> Optional · repeatable</p>
+        <p><strong>Example:</strong> <code>None</code></p>
+      </div>
+    </details></div>
+    </section>
+  </article>
+</div>
+</main>
+
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Chinese Name Recommendation Metadata Schema</span>
+    <span>Final Project · 2026</span>
+  </div>
+</footer>
+<script src="script.js"></script>
+
+</body>
+</html>

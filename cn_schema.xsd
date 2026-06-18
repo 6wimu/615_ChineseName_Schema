@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+     [Design Intent - Schema Architecture & OWL/RDF Handling]
+     Design Intent: Following the professor's feedback from Draft 3, I needed to address how OWL/RDF-based vocabularies (like Schema.org and FOAF) are handled in an XSD environment. Since they do not provide official, accessible .xsd files, I adopted a "Local Redefinition Strategy": I borrowed their conceptual semantics but redefined them as local elements (e.g., <familyName>) under my targetNamespace to ensure validation works perfectly. 
+     For Dublin Core Terms, I used <xs:import> and ref= with a local validation subset that preserves the official dcterms namespace (e.g., dcterms:identifier and dcterms:description). Additionally, I added domain-specific elements like `ipa` and `hanziRadical` to deepen the project's semantic richness based on peer and professor reviews.
+     AI Usage: I prompted the AI to structure the XSD using xs:import for dcterms, and to translate my Draft Data Dictionary into locally validated elements with strict xs:enumeration restrictions. I specifically instructed the AI to add new domain-specific elements ('hanziRadical' and 'ipa') to reflect my design updates based on previous feedback. Finally, I manually reviewed the generated code to ensure all cardinality constraints (e.g., minOccurs="0" for familyName) perfectly matched my schema design.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.skku.edu/metadata/cn/"
+           xmlns="http://www.skku.edu/metadata/cn/"
+           xmlns:dcterms="http://purl.org/dc/terms/"
+           elementFormDefault="qualified">
+    
+    <!-- Design Intent: Import a local validation subset of Dublin Core Terms.
+         Keeping the dependency in the same public folder makes validation reproducible
+         while preserving the official dcterms namespace and global element references. -->
+    <xs:import namespace="http://purl.org/dc/terms/" schemaLocation="dcterms.xsd"/>
+    
+    <xs:element name="ChineseNameDatabase">
+        <xs:annotation>
+            <xs:documentation>The root element containing multiple foreign Chinese name records.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="NameRecord" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            
+                            <!-- 1. identifier -->
+                            <!-- Design Intent: Using ref= to pull globally declared element from Dublin Core. minOccurs="1" makes it mandatory. -->
+                            <xs:element ref="dcterms:identifier" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation>데이터베이스 안에서 각각의 작명 데이터를 서로 구별하기 위해 시스템이 자동으로 부여하는 고유한 번호입니다.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            
+                            <!-- 2. originalName -->
+                            <!-- Design Intent: Locally declared element borrowing concept from schema:name. -->
+                            <xs:element name="originalName" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation>중국어 이름을 짓기 전, 외국인이 원래 사용하던 국가 기준의 본명 전체를 적습니다.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            
+                            <!-- 3. inLanguage -->
+                            <!-- Design Intent: xs:simpleType with enumeration restricts input to prevent data inconsistency. -->
+                            <xs:element name="inLanguage" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation>원래 이름이 어느 언어권에서 유래했는지 명시합니다.</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="English"/>
+                                        <xs:enumeration value="Korean"/>
+                                        <xs:enumeration value="Japanese"/>
+                                        <xs:enumeration value="Other"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            
+                            <!-- 4. familyName -->
+                            <!-- Design Intent: minOccurs="0" because some localized Chinese names do not include a traditional family name. -->
+                            <xs:element name="familyName" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation>새로 만들어진 중국어 이름 중에서 '성씨(姓)'에 해당하는 한자 부분을 따로 분리하여 입력합니다.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            
+                            <!-- 5. givenName -->
+                            <!-- Design Intent: Mandatory given name string. -->
+                            <xs:element name="givenName" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation>새로 만들어진 중국어 이름 중에서 성씨를 제외한 '이름'에 해당하는 한자 부분을 입력합니다.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            
+                            <!-- 6. fullChineseName -->
+                            <!-- Design Intent: Unified string for display purposes. -->
+                            <xs:element name="fullChineseName" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation>성씨와 이름을 결합하여, 사용자가 통상적으로 부르고 검색하는 완전한 형태의 중국어 이름 전체를 저장합니다.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            
+                            <!-- 7. pinyin -->
+                            <!-- Design Intent: Standard Pinyin string representation. -->
+                            <xs:element name="pinyin" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation>완성된 중국어 이름을 외국인이 올바르게 발음할 수 있도록 알파벳과 성조 기호로 표기한 표준 한어병음입니다.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            
+                            <!-- 8. ipa -->
+                            <!-- Design Intent: Added based on professor's feedback to deepen domain specificity. Optional element. -->
+                            <xs:element name="ipa" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation>비중화권 외국인에게 정확한 발음 가이드를 제공하기 위해 국제음성기호(IPA)로 표기한 발음 정보입니다.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            
+                            <!-- 9. nationality -->
+                            <!-- Design Intent: Regular expression pattern forces strict 2-letter ISO country codes (e.g., KR, US). -->
+                            <xs:element name="nationality" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation>이름을 신청한 외국인의 원래 국적 정보를 기록합니다. ISO 2자리 코드만 허용합니다.</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="[A-Z]{2}"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            
+                            <!-- 10. mappingType -->
+                            <!-- Design Intent: Controlled vocabulary to enforce predefined naming strategies. -->
+                            <xs:element name="mappingType" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation>원래 이름의 소리나 뜻이 어떤 규칙과 방식을 거쳐 중국어 이름으로 변환되었는지 그 유형을 분류합니다.</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Phonetic"/>
+                                        <xs:enumeration value="Semantic"/>
+                                        <xs:enumeration value="Localization"/>
+                                        <xs:enumeration value="HanjaSphere"/>
+                                        <xs:enumeration value="Phono-Semantic"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            
+                            <!-- 11. description -->
+                            <!-- Design Intent: Using ref= for Dublin Core definition instead of SKOS to fulfill rubric import requirements. -->
+                            <xs:element ref="dcterms:description" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation>선택한 한자의 뜻과 작명 의도에 대한 설명입니다.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            
+                            <!-- 12. hanziRadical -->
+                            <!-- Design Intent: maxOccurs="unbounded" because a name can have multiple characters and therefore multiple radicals. -->
+                            <xs:element name="hanziRadical" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>이름(Given Name)에 사용된 핵심 한자의 부수(部首) 정보를 독립적으로 기록합니다.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            
+                            <!-- 13. pronunciationDifficulty -->
+                            <!-- Design Intent: Strictly restricted to 3 values. -->
+                            <xs:element name="pronunciationDifficulty" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation>외국인이 이 중국어 이름을 발음할 때 느끼는 언어적 난이도를 평가한 수치입니다.</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Low"/>
+                                        <xs:enumeration value="Medium"/>
+                                        <xs:enumeration value="High"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            
+                            <!-- 14. culturalElement -->
+                            <!-- Design Intent: maxOccurs="unbounded" as a name might reflect both Zodiac and FiveElements simultaneously. -->
+                            <xs:element name="culturalElement" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>사주오행, 십이지신 등 작명할 때 특별히 반영한 동양 문화 및 철학 요소입니다.</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Zodiac"/>
+                                        <xs:enumeration value="FiveElements"/>
+                                        <xs:enumeration value="None"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

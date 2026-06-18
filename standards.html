@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Relevant Metadata Standards</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html">Chinese Name Schema</a>
+    <button class="menu-button" aria-label="Open menu">☰</button>
+    <div class="nav-links"><a class="" href="index.html">Home</a><a class="" href="about.html">Narrative</a><a class="active" href="standards.html">Standards</a><a class="" href="vocabulary.html">Vocabulary</a><a class="" href="xsd.html">XSD</a><a class="" href="samples.html">Samples</a></div>
+  </nav>
+</header>
+
+
+<main>
+<div class="page-hero">
+  <div class="eyebrow">Section 02</div>
+  <h1>Relevant Metadata Standards</h1>
+  <p class="lead">Standards and semantic models used directly or as design references.</p>
+</div>
+<div class="content">
+  <aside class="side-nav">
+    <a href="#overview">Overview</a>
+    <a href="#implementation">Implementation note</a>
+  </aside>
+  <article class="article">
+    <section id="overview">
+      <h2>Standards overview</h2>
+      <div class="meta-grid"><div class="meta-item"><strong>Dublin Core Terms</strong>Used directly for record identifiers and descriptive naming rationales. It offers broadly reusable semantic properties across domains.</div><div class="meta-item"><strong>Schema.org</strong>Informed earlier treatment of names and nationality. The final XSD uses local elements where direct XSD implementation is impractical.</div><div class="meta-item"><strong>FOAF</strong>Informed the distinction between family name and given name in person-name modeling.</div><div class="meta-item"><strong>SKOS</strong>Informed definition writing and the structure of controlled vocabularies.</div><div class="meta-item"><strong>ISO 3166-1</strong>Provides two-letter nationality codes such as KR, US, GB, and JP.</div><div class="meta-item"><strong>IPA</strong>Provides an optional pronunciation layer beyond Pinyin for precise phonetic description.</div></div>
+    </section>
+    <section id="implementation">
+      <h2>Implementation note</h2>
+      <p>
+        This schema is an application profile: it combines external semantic standards with
+        locally defined elements created for the Chinese-name recommendation domain.
+        Not every referenced standard is imported as an XSD. Some standards guide meaning,
+        naming, and interoperability, while the final technical implementation prioritizes
+        reliable schema validation.
+      </p>
+    </section>
+  </article>
+</div>
+</main>
+
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Chinese Name Recommendation Metadata Schema</span>
+    <span>Final Project · 2026</span>
+  </div>
+</footer>
+<script src="script.js"></script>
+
+</body>
+</html>

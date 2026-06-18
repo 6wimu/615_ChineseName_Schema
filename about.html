@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Opening Narrative</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html">Chinese Name Schema</a>
+    <button class="menu-button" aria-label="Open menu">☰</button>
+    <div class="nav-links"><a class="" href="index.html">Home</a><a class="active" href="about.html">Narrative</a><a class="" href="standards.html">Standards</a><a class="" href="vocabulary.html">Vocabulary</a><a class="" href="xsd.html">XSD</a><a class="" href="samples.html">Samples</a></div>
+  </nav>
+</header>
+
+
+<main>
+<div class="page-hero">
+  <div class="eyebrow">Section 01</div>
+  <h1>Opening Narrative</h1>
+  <p class="lead">The historical, cultural, and technical context needed to understand the schema.</p>
+</div>
+<div class="content">
+  <aside class="side-nav">
+    <a href="#history">History</a>
+    <a href="#users">Intended users</a>
+    <a href="#development">Development notes</a>
+    <a href="#theory">Theoretical considerations</a>
+  </aside>
+  <article class="article">
+    <section id="history">
+      <h2>History of the domain</h2>
+      <p>
+        Chinese names for non-Chinese speakers have long been created through multiple strategies:
+        phonetic transcription, semantic translation, localization, and the preservation of names
+        from other Han-character traditions. These approaches reflect different priorities.
+        Some emphasize sound, some meaning, and others cultural naturalness.
+      </p>
+      <p>
+        A name recommendation database therefore needs to describe more than the final characters.
+        It must also document the original name, its language, the transformation method,
+        pronunciation, semantic intention, and any cultural factors used during naming.
+      </p>
+    </section>
+    <section id="users">
+      <h2>Intended users</h2>
+      <div class="meta-grid">
+        <div class="meta-item"><strong>Chinese-language teachers</strong>For explaining pronunciation, meaning, and naming conventions.</div>
+        <div class="meta-item"><strong>Translators and interpreters</strong>For documenting consistent Chinese-name choices.</div>
+        <div class="meta-item"><strong>International students</strong>For understanding and comparing recommended names.</div>
+        <div class="meta-item"><strong>Developers and database managers</strong>For building searchable and valid XML records.</div>
+      </div>
+    </section>
+    <section id="development">
+      <h2>Development notes</h2>
+      <p>
+        The schema began as a ten-element application profile. The final design adds
+        <code>inLanguage</code>, <code>fullChineseName</code>, <code>ipa</code>, and
+        <code>hanziRadical</code> to better support multilingual naming records and practical retrieval.
+      </p>
+      <p>
+        The final XSD also distinguishes between standards used directly and standards used conceptually.
+        Dublin Core Terms is reused through its namespace, while certain person-name concepts informed by
+        Schema.org and FOAF are implemented locally for reliable XML Schema validation.
+      </p>
+    </section>
+    <section id="theory">
+      <h2>Theoretical considerations</h2>
+      <p>
+        A recommended Chinese name is treated as a culturally situated identity label rather than a
+        simple text string. Sound, meaning, writing system, cultural association, and user accessibility
+        are modeled as related but separately describable dimensions.
+      </p>
+    </section>
+  </article>
+</div>
+</main>
+
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Chinese Name Recommendation Metadata Schema</span>
+    <span>Final Project · 2026</span>
+  </div>
+</footer>
+<script src="script.js"></script>
+
+</body>
+</html>
