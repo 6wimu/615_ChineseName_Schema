@@ -4,8 +4,125 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sample XML Records</title>
-<meta name="description" content="">
 <link rel="stylesheet" href="style.css">
+<style>
+  /* 샘플 페이지 전용 확장 스타일 (기존 style.css와 완벽 조화) */
+  .samples-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 30px;
+  }
+  .sample-block {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(23,19,16,0.03);
+  }
+  .sample-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--paper-deep);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+  }
+  .sample-id {
+    font-family: monospace;
+    background: var(--jade-soft);
+    color: var(--jade);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .sample-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  @media(max-width: 900px) {
+    .sample-grid { grid-template-columns: 1fr; }
+  }
+  
+  /* 인포 카드 레이아웃 (Homepage Schema Preview 스타일 매칭) */
+  .info-card {
+    background: #fffdf8;
+    border: 1px solid #d9c7aa;
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .name-display {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  .chn-name {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--red);
+    font-family: "Noto Sans SC", serif;
+  }
+  .orig-name {
+    font-size: 1.2rem;
+    color: var(--muted);
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .meta-cell {
+    border-bottom: 1px solid var(--paper-deep);
+    padding-bottom: 8px;
+  }
+  .meta-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .meta-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .badge-type {
+    display: inline-block;
+    background: var(--gold-soft);
+    color: var(--gold);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+  .description-box {
+    background: var(--paper);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--gold);
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+
+  /* 소스코드 가시화 박스 레이아웃 */
+  .code-box {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 20px;
+    border-radius: 12px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.88rem;
+    overflow-x: auto;
+    white-space: pre;
+    border: 1px solid var(--ink);
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .code-box xml { display: block; }
+</style>
 </head>
 <body>
 
@@ -13,92 +130,175 @@
   <nav class="nav">
     <a class="brand" href="index.html">Chinese Name Schema</a>
     <button class="menu-button" aria-label="Open menu">☰</button>
-    <div class="nav-links"><a class="" href="index.html">Home</a><a class="" href="about.html">Narrative</a><a class="" href="standards.html">Standards</a><a class="" href="vocabulary.html">Vocabulary</a><a class="" href="xsd.html">XSD</a><a class="active" href="samples.html">Samples</a></div>
+    <div class="nav-links">
+      <a class="" href="index.html">Home</a>
+      <a class="" href="about.html">Narrative</a>
+      <a class="" href="standards.html">Standards</a>
+      <a class="" href="vocabulary.html">Vocabulary</a>
+      <a class="" href="xsd.html">XSD</a>
+      <a class="active" href="samples.html">Samples</a>
+    </div>
   </nav>
 </header>
-
 
 <main>
 <div class="page-hero">
   <div class="eyebrow">Section 05</div>
   <h1>Sample XML Records</h1>
-  <p class="lead">Two records using different name-mapping strategies and validating against the hosted XSD.</p>
+  <p class="lead">Validated instances showing different Chinese name mapping strategies complying with our XSD architecture.</p>
 </div>
+
 <div class="content">
-  <aside class="side-nav">
-    <a href="#david">David → 戴伟</a>
-    <a href="#park">박다운 → 朴多韵</a>
-    <a href="#combined">Combined file</a>
-  </aside>
-  <article class="article">
-    <section id="david">
-      <h2>David → 戴伟</h2>
-      <p><span class="tag">Localization</span> The name preserves part of the original sound while creating a natural Chinese surname and given name.</p>
-      <div class="btn-row"><a class="btn" href="sample-david.xml">Open XML file</a></div>
-      <details class="detail-list"><summary>Show XML code</summary><div class="detail-body"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+  <div class="samples-container" style="width: 100%;">
+    
+    <div class="sample-block">
+      <div class="sample-header">
+        <h2>Instance Record 01: Western Name Localization</h2>
+        <span class="sample-id">CN-2026-0002</span>
+      </div>
+      
+      <div class="sample-grid">
+        <div class="info-card">
+          <div class="name-display">
+            <span class="chn-name">戴伟</span>
+            <span class="orig-name">from <strong>David</strong> (English)</span>
+          </div>
+          
+          <div class="meta-grid">
+            <div class="meta-cell">
+              <div class="meta-label">Pinyin</div>
+              <div class="meta-value">Dài Wěi</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">IPA Pronunciation</div>
+              <div class="meta-value" style="color:var(--red);">[taɪ̯˥˧ weɪ̯˨˩˦]</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Nationality (ISO 3166)</div>
+              <div class="meta-value">US (United States)</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Mapping Strategy</div>
+              <div class="meta-value"><span class="badge-type">Localization</span></div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Hanzi Radical (부수)</div>
+              <div class="meta-value">亻 (인변)</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Difficulty for Foreigners</div>
+              <div class="meta-value">Low</div>
+            </div>
+          </div>
+          
+          <div class="meta-label" style="margin-bottom: 5px;">Semantic Description (의미론적 분석 사유)</div>
+          <div class="description-box">
+            원래 서양 이름인 'David'의 첫 발음 소리를 살리면서, 중국의 유명한 전통 성씨인 '대(戴)'씨로 연결했습니다. 위대하고 훌륭한 사람이 되라는 뜻입니다.
+          </div>
+        </div>
+        
+        <pre class="code-box"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;ChineseNameDatabase
-    xmlns=&quot;http://www.skku.edu/metadata/cn/&quot;
-    xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot;
-    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-    xsi:schemaLocation=&quot;http://www.skku.edu/metadata/cn/ cn_schema.xsd&quot;&gt;
+    xmlns="http://www.skku.edu/metadata/cn/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.skku.edu/metadata/cn/ cn_schema.xsd"&gt;
     &lt;NameRecord&gt;
-            &lt;dcterms:identifier&gt;CN-2026-0002&lt;/dcterms:identifier&gt;
-            &lt;originalName&gt;David&lt;/originalName&gt;
-            &lt;inLanguage&gt;English&lt;/inLanguage&gt;
-            &lt;familyName&gt;戴&lt;/familyName&gt;
-            &lt;givenName&gt;伟&lt;/givenName&gt;
-            &lt;fullChineseName&gt;戴伟&lt;/fullChineseName&gt;
-            &lt;pinyin&gt;Dài Wěi&lt;/pinyin&gt;
-            &lt;ipa&gt;[taɪ̯˥˧ weɪ̯˨˩˦]&lt;/ipa&gt;
-            &lt;nationality&gt;US&lt;/nationality&gt;
-            &lt;mappingType&gt;Localization&lt;/mappingType&gt;
-            &lt;dcterms:description&gt;원래 서양 이름인 &#x27;David&#x27;의 첫 발음 소리를 살리면서, 중국의 유명한 전통 성씨인 &#x27;대(戴)&#x27;씨로 연결했습니다. 위대하고 훌륭한 사람이 되라는 뜻입니다.&lt;/dcterms:description&gt;
-            &lt;hanziRadical&gt;亻&lt;/hanziRadical&gt;
-            &lt;pronunciationDifficulty&gt;Low&lt;/pronunciationDifficulty&gt;
-            &lt;culturalElement&gt;None&lt;/culturalElement&gt;
-        &lt;/NameRecord&gt;
-&lt;/ChineseNameDatabase&gt;
-</pre></div></details>
-    </section>
-    <section id="park">
-      <h2>박다운 → 朴多韵</h2>
-      <p><span class="tag">Phono-Semantic</span> The name combines similar pronunciation with positive semantic associations.</p>
-      <div class="btn-row"><a class="btn" href="sample-park-daun.xml">Open XML file</a></div>
-      <details class="detail-list"><summary>Show XML code</summary><div class="detail-body"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        &lt;dcterms:identifier&gt;CN-2026-0002&lt;/dcterms:identifier&gt;
+        &lt;originalName&gt;David&lt;/originalName&gt;
+        &lt;inLanguage&gt;English&lt;/inLanguage&gt;
+        &lt;familyName&gt;戴&lt;/familyName&gt;
+        &lt;givenName&gt;伟&lt;/givenName&gt;
+        &lt;fullChineseName&gt;戴伟&lt;/fullChineseName&gt;
+        &lt;pinyin&gt;Dài Wěi&lt;/pinyin&gt;
+        &lt;ipa&gt;[taɪ̯˥˧ weɪ̯˨˩˦]&lt;/ipa&gt;
+        &lt;nationality&gt;US&lt;/nationality&gt;
+        &lt;mappingType&gt;Localization&lt;/mappingType&gt;
+        &lt;dcterms:description&gt;원래 서양 이름인 'David'의 첫 발음 소리를 살리면서, 중국의 유명한 전통 성씨인 '대(戴)'씨로 연결했습니다. 위대하고 훌륭한 사람이 되라는 뜻입니다.&lt;/dcterms:description&gt;
+        &lt;hanziRadical&gt;亻&lt;/hanziRadical&gt;
+        &lt;pronunciationDifficulty&gt;Low&lt;/pronunciationDifficulty&gt;
+        &lt;culturalElement&gt;None&lt;/culturalElement&gt;
+    &lt;/NameRecord&gt;
+&lt;/ChineseNameDatabase&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="sample-block">
+      <div class="sample-header">
+        <h2>Instance Record 02: East Asian Phono-Semantic Mapping</h2>
+        <span class="sample-id">CN-2026-0007</span>
+      </div>
+      
+      <div class="sample-grid">
+        <div class="info-card">
+          <div class="name-display">
+            <span class="chn-name">朴多韵</span>
+            <span class="orig-name">from <strong>박다운</strong> (Korean)</span>
+          </div>
+          
+          <div class="meta-grid">
+            <div class="meta-cell">
+              <div class="meta-label">Pinyin</div>
+              <div class="meta-value">Piáo Duōyùn</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">IPA Pronunciation</div>
+              <div class="meta-value" style="color:var(--red);">[pʰjaʊ̯˧˥ twɔ˥ yn˥˩]</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Nationality (ISO 3166)</div>
+              <div class="meta-value">KR (South Korea)</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Mapping Strategy</div>
+              <div class="meta-value"><span class="badge-type" style="background:var(--jade-soft); color:var(--jade);">Phono-Semantic</span></div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Hanzi Radical (부수)</div>
+              <div class="meta-value">夕, 音 (다중 지정)</div>
+            </div>
+            <div class="meta-cell">
+              <div class="meta-label">Difficulty for Foreigners</div>
+              <div class="meta-value">Medium</div>
+            </div>
+          </div>
+          
+          <div class="meta-label" style="margin-bottom: 5px;">Semantic Description (의미론적 분석 사유)</div>
+          <div class="description-box">
+            한국어 고유어 발음과 동일하게 읽히는 한자를 골랐습니다. 아름다운 예술적 운치와 풍요로움이 가득하길 바란다는 뜻입니다.
+          </div>
+        </div>
+        
+        <pre class="code-box"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;ChineseNameDatabase
-    xmlns=&quot;http://www.skku.edu/metadata/cn/&quot;
-    xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot;
-    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-    xsi:schemaLocation=&quot;http://www.skku.edu/metadata/cn/ cn_schema.xsd&quot;&gt;
+    xmlns="http://www.skku.edu/metadata/cn/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.skku.edu/metadata/cn/ cn_schema.xsd"&gt;
     &lt;NameRecord&gt;
-            &lt;dcterms:identifier&gt;CN-2026-0007&lt;/dcterms:identifier&gt;
-            &lt;originalName&gt;박다운&lt;/originalName&gt;
-            &lt;inLanguage&gt;Korean&lt;/inLanguage&gt;
-            &lt;familyName&gt;朴&lt;/familyName&gt;
-            &lt;givenName&gt;多韵&lt;/givenName&gt;
-            &lt;fullChineseName&gt;朴多韵&lt;/fullChineseName&gt;
-            &lt;pinyin&gt;Piáo Duōyùn&lt;/pinyin&gt;
-            &lt;ipa&gt;[pʰjaʊ̯˧˥ twɔ˥ yn˥˩]&lt;/ipa&gt;
-            &lt;nationality&gt;KR&lt;/nationality&gt;
-            &lt;mappingType&gt;Phono-Semantic&lt;/mappingType&gt;
-            &lt;dcterms:description&gt;한국어 고유어 발음과 동일하게 읽히는 한자를 골랐습니다. 아름다운 예술적 운치와 풍요로움이 가득하길 바란다는 뜻입니다.&lt;/dcterms:description&gt;
-            &lt;hanziRadical&gt;夕&lt;/hanziRadical&gt;
-            &lt;hanziRadical&gt;音&lt;/hanziRadical&gt;
-            &lt;pronunciationDifficulty&gt;Medium&lt;/pronunciationDifficulty&gt;
-            &lt;culturalElement&gt;None&lt;/culturalElement&gt;
-        &lt;/NameRecord&gt;
-&lt;/ChineseNameDatabase&gt;
-</pre></div></details>
-    </section>
-    <section id="combined">
-      <h2>Combined sample file</h2>
-      <p>Both records are also available in one database-level XML document.</p>
-      <div class="btn-row"><a class="btn light" href="sample-records.xml">Open combined XML</a></div>
-    </section>
-  </article>
+        &lt;dcterms:identifier&gt;CN-2026-0007&lt;/dcterms:identifier&gt;
+        &lt;originalName&gt;박다운&lt;/originalName&gt;
+        &lt;inLanguage&gt;Korean&lt;/inLanguage&gt;
+        &lt;familyName&gt;朴&lt;/familyName&gt;
+        &lt;givenName&gt;多韵&lt;/givenName&gt;
+        &lt;fullChineseName&gt;朴多韵&lt;/fullChineseName&gt;
+        &lt;pinyin&gt;Piáo Duōyùn&lt;/pinyin&gt;
+        &lt;ipa&gt;[pʰjaʊ̯˧˥ twɔ˥ yn˥˩]&lt;/ipa&gt;
+        &lt;nationality&gt;KR&lt;/nationality&gt;
+        &lt;mappingType&gt;Phono-Semantic&lt;/mappingType&gt;
+        &lt;dcterms:description&gt;한국어 고유어 발음과 동일하게 읽히는 한자를 골랐습니다. 아름다운 예술적 운치와 풍요로움이 가득하길 바란다는 뜻입니다.&lt;/dcterms:description&gt;
+        &lt;hanziRadical&gt;夕&lt;/hanziRadical&gt;
+        &lt;hanziRadical&gt;音&lt;/hanziRadical&gt;
+        &lt;pronunciationDifficulty&gt;Medium&lt;/pronunciationDifficulty&gt;
+        &lt;culturalElement&gt;None&lt;/culturalElement&gt;
+    &lt;/NameRecord&gt;
+&lt;/ChineseNameDatabase&gt;</code></pre>
+      </div>
+    </div>
+
+  </div>
 </div>
 </main>
-
 
 <footer class="footer">
   <div class="footer-inner">
@@ -106,7 +306,6 @@
     <span>Final Project · 2026</span>
   </div>
 </footer>
-<script src="script.js"></script>
 
 </body>
 </html>
