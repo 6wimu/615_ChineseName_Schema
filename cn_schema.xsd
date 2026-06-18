@@ -2,20 +2,24 @@
 <!--
   Chinese Name Recommendation Metadata Schema
 
-  Draft 4 implementation notes:
+  Final-version implementation notes:
   1. familyName is optional (minOccurs="0") so records such as Victor → 胜伟
      do not require an artificial Chinese surname.
   2. Dublin Core Terms are reused across namespaces with xs:import and ref=.
-     The accompanying dcterms.xsd is a small, project-scoped validation profile
-     that preserves the DCMI namespace while keeping validation reproducible.
-  3. Schema.org and FOAF are RDF-oriented vocabularies rather than official XSD
-     dependencies for this project. Their semantics inform locally declared
-     elements such as familyName and givenName.
+     The accompanying dcterms.xsd is a project-scoped validation profile that
+     preserves the DCMI namespace while keeping validation reproducible.
+  3. Schema.org and FOAF are RDF-oriented vocabularies rather than stable XSD
+     dependencies for this project. Their semantics informed local elements such
+     as familyName and givenName instead of unsafe direct imports.
   4. Controlled values are enforced with xs:enumeration, while nationality uses
-     the ISO 3166-1 alpha-2 lexical format [A-Z]{2}.
-  5. ipa and repeatable hanziRadical elements add pronunciation and character-
-     structure detail; radicals such as 火 and 木 can support a Five Elements
-     naming rationale recorded through culturalElement.
+     the ISO 3166-1 alpha-2 lexical pattern [A-Z]{2}.
+  5. Optional ipa and repeatable hanziRadical elements add pronunciation and
+     character-structure detail. These support culturally specific cases such as
+     Five Elements reasoning in Chinese naming recommendations.
+  6. AI-use note: an AI assistant was used to help draft and revise XSD syntax.
+     I checked namespace behavior, cardinality, and validation manually, then
+     rewrote comments and adjusted structure to match my own data dictionary and
+     professor feedback.
 -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            targetNamespace="https://6wimu.github.io/615_ChineseName_Schema/"
@@ -25,29 +29,63 @@
            attributeFormDefault="unqualified"
            version="1.0">
 
+  <!--
+    Design intent: the targetNamespace matches the public GitHub Pages location
+    of this schema so that sample XML records can reference one stable web URI.
+    The default namespace is the same as the targetNamespace to simplify instance
+    documents and to meet the course checklist for qualified elements.
+  -->
   <xs:import namespace="http://purl.org/dc/terms/" schemaLocation="dcterms.xsd"/>
 
+  <!--
+    Design intent: ChineseNameDatabase is the root container for one or more
+    recommendation records. I used a database-style wrapper so that the schema
+    can validate either a small teaching dataset or a growing collection.
+  -->
   <xs:element name="ChineseNameDatabase">
     <xs:annotation>
       <xs:documentation>A database containing one or more Chinese-name recommendation records.</xs:documentation>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
+        <!--
+          Design intent: NameRecord is repeatable because the website includes
+          multiple sample records and the schema is designed for batch storage,
+          not only for single-record demonstration.
+        -->
         <xs:element name="NameRecord" minOccurs="1" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>A single Chinese-name recommendation record for one person or naming case.</xs:documentation>
+          </xs:annotation>
           <xs:complexType>
             <xs:sequence>
+              <!--
+                Design intent: dcterms:identifier is reused from Dublin Core
+                because record identity is a common metadata function and DCMI
+                provides an accessible element that can be referenced globally.
+              -->
               <xs:element ref="dcterms:identifier" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                   <xs:documentation>A unique identifier for the recommendation record.</xs:documentation>
                 </xs:annotation>
               </xs:element>
 
+              <!--
+                Design intent: originalName stores the source personal name as
+                entered before Chinese-name mapping. I kept it simple as xs:string
+                because the source may come from different languages and scripts.
+              -->
               <xs:element name="originalName" type="xs:string" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                   <xs:documentation>The complete personal name before Chinese-name mapping.</xs:documentation>
                 </xs:annotation>
               </xs:element>
 
+              <!--
+                Design intent: inLanguage is controlled by enumeration to keep
+                sample data consistent and to support clear interpretation of how
+                the original name should be read during mapping.
+              -->
               <xs:element name="inLanguage" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                   <xs:documentation>The source language of the original name.</xs:documentation>
@@ -62,36 +100,67 @@
                 </xs:simpleType>
               </xs:element>
 
+              <!--
+                Design intent: familyName is optional because not every mapped
+                Chinese recommendation naturally uses a surname. This directly
+                responds to peer feedback about cases such as Victor → 胜伟.
+              -->
               <xs:element name="familyName" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
                   <xs:documentation>The Chinese family-name component, omitted when the recommendation has no conventional surname.</xs:documentation>
                 </xs:annotation>
               </xs:element>
 
+              <!--
+                Design intent: givenName is required because every recommendation
+                must contain at least the personal-name portion. When familyName is
+                absent, givenName can hold the full recommended personal name.
+              -->
               <xs:element name="givenName" type="xs:string" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                   <xs:documentation>The Chinese personal-name component; when familyName is absent, this stores the complete recommended personal name.</xs:documentation>
                 </xs:annotation>
               </xs:element>
 
+              <!--
+                Design intent: fullChineseName is stored separately for easy
+                display, indexing, and retrieval. This avoids forcing systems to
+                reconstruct the display form from familyName + givenName.
+              -->
               <xs:element name="fullChineseName" type="xs:string" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                   <xs:documentation>The complete recommended Chinese name used for display and retrieval.</xs:documentation>
                 </xs:annotation>
               </xs:element>
 
+              <!--
+                Design intent: pinyin is required because Mandarin pronunciation
+                is one of the most practical access points for intended users who
+                want to read or teach the recommended Chinese name.
+              -->
               <xs:element name="pinyin" type="xs:string" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                   <xs:documentation>The Mandarin pronunciation in Hanyu Pinyin with tone marks.</xs:documentation>
                 </xs:annotation>
               </xs:element>
 
+              <!--
+                Design intent: ipa is optional because IPA adds useful phonetic
+                precision, but many real users can still use the record without it.
+                I added this element to deepen phonological description after
+                revision feedback in later drafts.
+              -->
               <xs:element name="ipa" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
                   <xs:documentation>An optional International Phonetic Alphabet transcription of the Mandarin pronunciation.</xs:documentation>
                 </xs:annotation>
               </xs:element>
 
+              <!--
+                Design intent: nationality is restricted by pattern rather than a
+                long closed list. This keeps the schema lightweight while still
+                enforcing ISO-style two-letter uppercase codes.
+              -->
               <xs:element name="nationality" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                   <xs:documentation>The applicant nationality in the two-uppercase-letter ISO 3166-1 alpha-2 lexical format.</xs:documentation>
@@ -103,6 +172,11 @@
                 </xs:simpleType>
               </xs:element>
 
+              <!--
+                Design intent: mappingType is a required controlled vocabulary so
+                users can quickly identify the main naming strategy used in each
+                recommendation and compare cases consistently.
+              -->
               <xs:element name="mappingType" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                   <xs:documentation>The principal strategy used to create or preserve the Chinese name.</xs:documentation>
@@ -118,18 +192,33 @@
                 </xs:simpleType>
               </xs:element>
 
+              <!--
+                Design intent: dcterms:description is reused for human-readable
+                explanation of meaning and rationale. I chose Dublin Core here to
+                show cross-schema reuse in a field that is semantically generic.
+              -->
               <xs:element ref="dcterms:description" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                   <xs:documentation>The meaning of the selected characters and the rationale for the recommendation.</xs:documentation>
                 </xs:annotation>
               </xs:element>
 
+              <!--
+                Design intent: hanziRadical is repeatable because more than one
+                key character may matter in the naming logic. Repeatability also
+                supports explicit documentation of Five Elements reasoning.
+              -->
               <xs:element name="hanziRadical" type="xs:string" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:documentation>A repeatable radical for a key given-name character. Values such as 火 and 木 can make a Five Elements rationale explicit.</xs:documentation>
                 </xs:annotation>
               </xs:element>
 
+              <!--
+                Design intent: pronunciationDifficulty is optional because it is
+                an evaluative aid rather than a core identifying property. The
+                closed list keeps classroom examples and future records consistent.
+              -->
               <xs:element name="pronunciationDifficulty" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
                   <xs:documentation>An estimated Mandarin-pronunciation difficulty for a non-Chinese speaker.</xs:documentation>
@@ -143,6 +232,12 @@
                 </xs:simpleType>
               </xs:element>
 
+              <!--
+                Design intent: culturalElement is repeatable because one name can
+                reflect multiple cultural considerations. I kept the vocabulary
+                deliberately small for this project so the conceptual logic stays
+                clear to users reading the website.
+              -->
               <xs:element name="culturalElement" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:documentation>A repeatable controlled value for cultural or philosophical considerations used in the recommendation.</xs:documentation>
